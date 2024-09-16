@@ -1,9 +1,9 @@
 Namespace: cycling-poc
 @prefix cycl: <https://vlaanderen.be/abb/hackaton/group10/ns/cycling-poc> .
 
-# Application form result
+# CyclingEventRequest form result
 
-## Application model
+## CyclingEventRequest model
 
 Nl. 'Aanvraag voor wielerwedstrijd
 
