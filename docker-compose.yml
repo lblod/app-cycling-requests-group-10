@@ -110,3 +110,45 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  deltanotifier:
+    image: semtech/mu-delta-notifier:0.3.0
+    volumes:
+      - ./config/delta:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  ldes-delta-pusher:
+    image: redpencil/ldes-delta-pusher:0.4.1
+    environment:
+      LDES_ENDPOINT: "http://ldes-backend"
+      LDES_BASE: "https://dev.cylcing-fake.lblod.info/streams/ldes"
+      MAX_PAGE_SIZE_BYTES: 10000000
+      INITIAL_STATE_LIMIT: 10000
+      DIRECT_DB_ENDPOINT: "http://virtuoso:8890/sparql"
+      WRITE_INITIAL_STATE: "false"
+
+    volumes:
+      - ./config/ldes-delta-pusher/:/config/
+    restart: always
+    labels:
+      - "logging=true"
+    links:
+      - virtuoso:database
+  ldes-backend:
+    image: redpencil/fragmentation-producer:0.4.1
+    restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
+    environment:
+      BASE_URL: "https://dev.cylcing-fake.lblod.info/streams/ldes"
+      FOLDER_DEPTH: 1
+      PAGE_RESOURCES_COUNT: 20
+      LDES_STREAM_PREFIX: "https://dev.cylcing-fake.lblod.info/streams/ldes/"
+      TIME_TREE_RELATION_PATH: "http://www.w3.org/ns/prov#generatedAtTime"
+      CACHE_SIZE: 10
+      DATA_FOLDER: "/data"
+      ENABLE_AUTH: "false"
+    volumes:
+      - "./data/ldes-feed/:/data/"
