@@ -59,10 +59,10 @@
 (add-prefix "form" "http://lblod.data.gift/vocabularies/forms/")
 (add-prefix "sh" "http://www.w3.org/ns/shacl#")
 (add-prefix "mu" "http://mu.semte.ch/vocabularies/core/")
-(add-prefix "extlmb" "http://mu.semte.ch/vocabularies/ext/lmb/")
 (add-prefix "eli" "http://data.europa.eu/eli/ontology#")
 (add-prefix "nao" "http://www.semanticdesktop.org/ontologies/2007/08/15/nao#")
 (add-prefix "lmb" "http://lblod.data.gift/vocabularies/lmb/")
+(add-prefix "sign" "http://mu.semte.ch/vocabularies/ext/signing/")
 
 ;; so we can 'easily' change this prefix later to something else
 (add-prefix "cycling" "http://mu.semte.ch/vocabularies/ext/cycing/")
