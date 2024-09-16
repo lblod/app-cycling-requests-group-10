@@ -1,5 +1,6 @@
 Namespace: cycling-poc
-@prefix cycl: <https://vlaanderen.be/abb/hackaton/group10/ns/cycling-poc> .
+@prefix cycle: <https://example.com/ns/cycle> .
+@prefix ext: <https://semtatic whatever redpencil ext>
 
 # CyclingEventRequest form result
 
@@ -10,10 +11,10 @@ Nl. 'Aanvraag voor wielerwedstrijd
 * Model: 'CyclingApplication'
 * Name (string)
 * Days (List[CyclingApplicationDay])
-* Organiser (simplified: name of person)
-* SafetyCoordinator (simplified: name of person)
+* Organizer (simplified: name of person, final: linked data ref to person?)
+* SafetyCoordinator (simplified: name of person, final: linked data ref to person?)
 * PublicityCaravan (simplified boolean yes/no)
-* Policesupport (simplified boolean yes/no)
+* PoliceSupport (simplified boolean yes/no)
 * RouteDefinition (RouteDefinition)
 
 ## CyclingApplicationDay
@@ -37,6 +38,8 @@ Nl. 'Aanvraag voor wielerwedstrijd
 * RegionalRoad (For hackaton boolean yes/no)
 * ProvincialRoad (For hackaton boolean yes/no)
 * Railwaycrossings (List string)
+
+
 
 ---
 
