@@ -1,0 +1,49 @@
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mu:<http://mu.semte.ch/vocabularies/core/>
+PREFIX ext:<http://mu.semte.ch/vocabularies/ext/>
+PREFIX bestuurseenheidscode: <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/>
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/sessions> {
+    <http://data.lblod.info/id/gebruiker/example> a foaf:Person;
+            mu:uuid "b902a388-4cb8-41d6-bc4d-0cd8382fc55d";
+            foaf:firstName "Example";
+            foaf:familyName "User";
+            foaf:member <http://data.lblod.info/id/bestuurseenheid/123>;
+            foaf:account <http://data.lblod.info/id/account/example>.
+    <http://data.lblod.info/id/account/example> a foaf:OnlineAccount;
+            mu:uuid "da18b252-8c23-44b8-bf9f-06d804173a26";
+            foaf:accountServiceHomepage <https://github.com/lblod/mock-login-service>;
+            ext:sessionRole "LBHackathon-FakeRole".
+
+    <http://data.lblod.info/id/bestuurseenheid/123> a besluit:Bestuurseenheid;
+      mu:uuid "10b49274-d46b-4308-88b1-3bdf7e996985" .
+
+  }
+};
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    <http://data.lblod.info/id/gebruiker/example> a foaf:Person;
+            mu:uuid "b902a388-4cb8-41d6-bc4d-0cd8382fc55d";
+            foaf:firstName "Example";
+            foaf:familyName "User";
+            foaf:member <http://data.lblod.info/id/bestuurseenheid/123>;
+            foaf:account <http://data.lblod.info/id/account/example>.
+    <http://data.lblod.info/id/account/example> a foaf:OnlineAccount;
+            mu:uuid "da18b252-8c23-44b8-bf9f-06d804173a26";
+            foaf:accountServiceHomepage <https://github.com/lblod/mock-login-service>;
+            ext:sessionRole "LBHackathons-FakeRole".
+
+    <http://data.lblod.info/id/bestuurseenheid/123> a besluit:Bestuurseenheid;
+      mu:uuid "10b49274-d46b-4308-88b1-3bdf7e996985" .
+  }
+};
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/organizations/10b49274-d46b-4308-88b1-3bdf7e996985> {
+    <http://data.lblod.info/id/account/example> a foaf:OnlineAccount;
+            mu:uuid "da18b252-8c23-44b8-bf9f-06d804173a26".
+  }
+}
+

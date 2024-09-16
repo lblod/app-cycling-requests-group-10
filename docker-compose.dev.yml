@@ -1,9 +1,26 @@
-version: '3.4'
+version: "3.4"
 
 services:
   identifier:
+    restart: "no"
     ports:
       - "80:80"
   database:
+    restart: "no"
+  dispatcher:
+    restart: "no"
+  virtuoso:
+    restart: "no"
     ports:
       - "8890:8890"
+  resource:
+    restart: "no"
+    ports:
+      - "81:80"
+  migrations:
+    restart: "no"
+  mocklogin:
+    image: lblod/mock-login-service:0.3.1
+    restart: "no"
+    environment:
+      LOG_LEVEL: debug

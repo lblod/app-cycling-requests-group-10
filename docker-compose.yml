@@ -1,29 +1,112 @@
-version: '3.4'
+version: "3.7"
+
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
 
 services:
   identifier:
     image: semtech/mu-identifier:1.10.3
+    logging: *default-logging
+    restart: always
     environment:
       SESSION_COOKIE_SECURE: "on"
-    links:
-      - dispatcher:dispatcher
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.2
-    links:
-      - resource:resource
+    logging: *default-logging
+    restart: always
     volumes:
       - ./config/dispatcher:/config
+
   database:
+    image: semtech/sparql-parser:0.0.8
+    environment:
+      MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
+      DATABASE_OVERLOAD_RECOVERY: "true"
+      DATABASE_COMPATIBILITY: "Virtuoso"
+      # Note: not sure wether it gets picked up properly, it is meant for healing-process which may make
+      # heavy queries
+      QUERY_MAX_PROCESSING_TIME: 605000
+      QUERY_MAX_EXECUTION_TIME: 605000
+    volumes:
+      - ./config/cl-authorization:/config
+      - ./data/mu-auth:/data
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  virtuoso:
     image: redpencil/virtuoso:1.2.0-rc.1
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
+    restart: always
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+    logging: *default-logging
+  ldes-client-lmb:
+    image: lblod/ldes-client:0.0.3
+    restart: always
+    labels:
+      - "logging=true"
+    environment:
+      LOG_LEVEL: debug
+      TARGET_GRAPH: http://mu.semte.ch/graphs/lmb
+      BATCH_SIZE: 200
+      BYPASS_MU_AUTH: false
+      LDES_BASE: https://dev.mandatenbeheer.lblod.info/streams/ldes/abb/
+      FIRST_PAGE: https://dev.mandatenbeheer.lblod.info/streams/ldes/abb/1
+      BATCH_GRAPH: http://mu.semte.ch/graphs/batch/lmb
+      WORKING_GRAPH: http://mu.semte.ch/graphs/temp/lmb
+      # it seems virtuoso is slower if it needs to reuse graphs it dropped before, so randomize them
+      RANDOMIZE_GRAPHS: true
+      CRON_PATTERN: "* */5 * * * *"
+      EXTRA_HEADERS: '{"Authorization": "Basic aHR0cDovL2RhdGEubGJsb2QuaW5mby92ZW5kb3JzL2M1ZGE3NjZmLWYxYTYtNDI2YS05YTRkLTM2Yjk2YTg1NWUxODpteSBzdXBlciBzZWNyZXQga2V5IHRoYXQgaSBzaG91bGQgcmVwbGFjZQ=="}'
+    volumes:
+      - ../app-lokaal-mandatenbeheer/config/ldes-client:/config
   resource:
     image: semtech/mu-cl-resources:1.23.0
+    logging: *default-logging
+    restart: always
     links:
       - database:database
     volumes:
       - ./config/resources:/config
+  migrations:
+    image: semtech/mu-migrations-service:0.6.0
+    links:
+      - virtuoso:database
+    environment:
+      MU_SPARQL_TIMEOUT: "300"
+    volumes:
+      - ./config/migrations:/data/migrations
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  example:
+    image: semtech/mu-javascript-template:1.8.0
+    logging: *default-logging
+    restart: always
+    environment:
+      NODE_ENV: "development"
+    volumes:
+      - ./config/example:/app/
+  login:
+    image: lblod/acmidm-login-service:0.12.0
+    environment:
+      MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
+      MU_APPLICATION_AUTH_CLIENT_ID: "a2c0d6ea-01b4-4f68-920b-10834a943c27"
+      LOG_SINK_URL: "http://sink"
+      MU_APPLICATION_AUTH_JWK_PRIVATE_KEY: /config/jwk_private_key.json
+      MU_APPLICATION_AUTH_USERID_CLAIM: vo_id
+      MU_APPLICATION_AUTH_REDIRECT_URI: "https://mandatenbeheer.lblod.info/authorization/callback"
+    volumes:
+      - ./config/login:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
