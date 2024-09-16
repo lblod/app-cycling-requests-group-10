@@ -6,9 +6,6 @@ defmodule Dispatcher do
     any: ["*/*"]
   ]
 
-  @json %{ accept: %{ json: true } }
-  @html %{ accept: %{ html: true } }
-
   define_layers [ :static, :resources, :services, :fall_back, :not_found ]
 
   # In order to forward the 'themes' resource to the
@@ -38,6 +35,65 @@ defmodule Dispatcher do
 
   match "/sessions/*path", %{layer: :services, accept: %{any: true}} do
     Proxy.forward(conn, path, "http://login/sessions/")
+  end
+
+  #################################################################
+  # Resources
+  #################################################################
+  match "/commune-approvals/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/commune-approvals/")
+  end
+
+  match "/agendapunten/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/agendapunten/")
+  end
+
+  match "/besluiten/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/besluiten/")
+  end
+
+  match "/behandelingen-van-agendapunt/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/behandelingen-van-agendapunt/")
+  end
+
+  match "/published-resources/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/published-resources/")
+  end
+
+  match "/adressen/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/adressen/")
+  end
+
+  match "/concepts/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/concepts/")
+  end
+
+  match "/concept-schemes/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/concept-schemes/")
+  end
+
+  match "/request-state-classifications/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/request-state-classifications/")
+  end
+
+  match "/bestuurseenheden/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/bestuurseenheden/")
+  end
+
+  match "/bestuurseenheid-classificatie-codes/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/bestuurseenheid-classificatie-codes/")
+  end
+
+  match "/werkingsgebieden/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/werkingsgebieden/")
+  end
+
+  match "/cycling-requests/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/cycling-requests/")
+  end
+
+  match "/route-sections/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/route-sections/")
   end
 
   #################################################################

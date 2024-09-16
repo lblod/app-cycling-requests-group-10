@@ -58,27 +58,36 @@
   :schema "http://schema.org/"
   :skos "http://www.w3.org/2004/02/skos/core#"
   :extlmb "http://mu.semte.ch/vocabularies/ext/lmb/"
-  :lmb "http://lblod.data.gift/vocabularies/lmb/"
+  :cycling "http://mu.semte.ch/vocabularies/ext/cycing/"
+  :sign "http://mu.semte.ch/vocabularies/ext/signing/"
 )
 
 (define-graph public ("http://mu.semte.ch/graphs/public")
   ("ext:FileAddress" -> _)
-  ("nfo:FileDataObject" -> _))
+  ("nfo:FileDataObject" -> _)
+  ("locn:Address" -> _)
+  ("skos:Concept" -> _)
+  ("skos:ConceptScheme" -> _)
+  ("cycling:RequestStateClassification" -> _)
+  ("besluit:Bestuurseenheid" -> _)
+  ("ext:BestuurseenheidClassificatieCode" -> _)
+  ("prov:Location" -> _)
+  ("cycling:Aanvraag" -> _)
+  ("cycling:RouteSectie" -> _)
+  ("cycling:GoedkeuringDoorGemeente" -> _)
+  ("besluit:Agendapunt" -> _)
+  ("besluit:Besluit" -> _)
+  ("besluit:BehandelingVanAgendapunt" -> _)
+  ("sign:PublishedResource" -> _))
 
 (define-graph sessions ("http://mu.semte.ch/graphs/sessions")
   ("musession:Session" -> _))
 
-; minimal set of types. Not counting on this app being used to write types here,
-; only receive them from the ldes client through sudo queries
-(define-graph lmb ("http://mu.semte.ch/graphs/lmb")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _))
-
 
 (supply-allowed-group "public")
 
-(grant (read)
+;; hack: this should never be done in a real app! mostly done to have login but not have to care about graphs
+(grant (read write)
        :to-graph public
        :for-allowed-group "public")
 
@@ -93,13 +102,4 @@
 
 (grant (read)
        :to-graph sessions
-       :for-allowed-group "authenticated")
-
-; granting read to lmb graph, I envisage that there will be multiple such graphs
-; one for every source LDES being consumed. But this is just an example approach.
-; This gives you the benefit of keeping track of where you received data from so that
-; IF you have two sources providing you with the same concept but different versions,
-; you know which came from where. You can also give different access rights this way
-(grant (read)
-       :to-graph lmb
        :for-allowed-group "authenticated")
