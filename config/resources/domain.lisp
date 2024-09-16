@@ -13,3 +13,7 @@
 
 ;; reading in the domain.json
 (read-domain-file "user.lisp")
+(read-domain-file "cycling-requests.lisp")
+(read-domain-file "decisions.lisp")
+
+;; warning: run `mu project doc` after changes to the resource config to avoid unexpected errors

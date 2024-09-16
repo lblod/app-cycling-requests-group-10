@@ -63,3 +63,6 @@
 (add-prefix "eli" "http://data.europa.eu/eli/ontology#")
 (add-prefix "nao" "http://www.semanticdesktop.org/ontologies/2007/08/15/nao#")
 (add-prefix "lmb" "http://lblod.data.gift/vocabularies/lmb/")
+
+;; so we can 'easily' change this prefix later to something else
+(add-prefix "cycling" "http://mu.semte.ch/vocabularies/ext/cycing/")
