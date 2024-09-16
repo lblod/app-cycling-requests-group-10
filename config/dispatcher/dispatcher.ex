@@ -105,6 +105,10 @@ defmodule Dispatcher do
     forward(conn, path, "http://example/")
   end
 
+  match "/form-content/*path", %{layer: :services, accept: %{any: true}} do
+    forward(conn, path, "http://form-content/")
+  end
+
   match "/*_", %{ layer: :not_found } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
