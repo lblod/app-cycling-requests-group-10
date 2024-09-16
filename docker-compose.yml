@@ -152,3 +152,10 @@ services:
       ENABLE_AUTH: "false"
     volumes:
       - "./data/ldes-feed/:/data/"
+  form-content:
+    image: lblod/form-content-service:0.0.7
+    restart: always
+    labels:
+      - "logging=true"
+    volumes:
+      - ./config/form-content:/config
