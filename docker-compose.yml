@@ -133,7 +133,7 @@ services:
     volumes:
       - "./data/ldes-feed/:/data/"
   form-content:
-    image: lblod/form-content-service:0.0.7
+    image: lblod/form-content-service:0.0.8
     restart: always
     labels:
       - "logging=true"

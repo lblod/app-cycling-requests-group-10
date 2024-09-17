@@ -106,8 +106,11 @@
   ;; most properties will come from the form (if all goes well)
   :properties `((:created :datetime ,(s-prefix "dct:createdAt"))
                 (:race-name :string ,(s-prefix "dct:title"))
+                ;; this could be computed from the times of the route-sections, but is left here because it's easy during the hackathon
                 (:race-date :string ,(s-prefix "cycling:raceDate"))
+                ;; can we get this from the user? Maybe that's not a good idea because they may want to use pseudonyms/brand names?
                 (:organizer-name :string ,(s-prefix "cycling:organizerName"))
+                ;; shortcut instead of using an address type
                 (:organizer-address :string ,(s-prefix "cycling:organizerAddress"))
                 (:description :string ,(s-prefix "dct:description")))
   :has-one `((request-state-classification :via ,(s-prefix "cycling:state")
