@@ -21,7 +21,6 @@ const fetchSubjectData = async (subject: InterestingSubject) => {
     PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
     CONSTRUCT {
       <${subject.uri}> ?p ?o .
-      <${subject.uri}> ext:relatedTo ?bestuurseenheid .
     } WHERE {
       <${subject.uri}> ?p ?o .
     }
@@ -31,7 +30,7 @@ const fetchSubjectData = async (subject: InterestingSubject) => {
 
 async function sendLDESRequest(body: string, retriesLeft = 3) {
   log(`Sending data to LDES endpoint ${LDES_ENDPOINT}`, "debug");
-  await fetch(`${LDES_ENDPOINT}`, {
+  await fetch(`${LDES_ENDPOINT}/ldes`, {
     method: "POST",
     headers: {
       "Content-Type": "text/turtle",

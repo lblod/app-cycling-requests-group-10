@@ -1,14 +1,14 @@
 import { Changeset } from "../types";
 import { query } from "mu";
 import { publishInterestingSubjects } from "./handle-types-util";
-import { InterestingSubject, LDES_TYPE, TypesWithFilter } from "./publisher";
+import { InterestingSubject } from "./publisher";
 
 const regularTypesToLDESMapping: {
   [key: string]: true;
 } = {
-  "cycling:GoedkeuringDoorGemeente": true,
-  "besluit:Agendapunt": true,
-  "sign:PublishedResource": true,
+  "http://www.w3.org/ns/locn#Address": true,
+  "https://data.vlaanderen.be/ns/mobiliteit#Project": true,
+  "https://data.vlaanderen.be/ns/mobiliteit#Inname": true,
 };
 
 export const publishTypeOnLDES = (type: string) => {

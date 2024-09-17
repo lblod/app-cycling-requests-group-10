@@ -1,5 +1,5 @@
-import cycling from "./cycling";
+import cycling from "./cycling.js";
+import resources from "./resource.js";
+import ldes from "./ldes.js";
 
-export default [
-...cycling
-];
+export default [...cycling, ...resources, ...ldes];
