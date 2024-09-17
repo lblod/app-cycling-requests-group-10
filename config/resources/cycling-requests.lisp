@@ -49,7 +49,7 @@
 
 (define-resource request-state-classification (concept)
   :class (s-prefix "cycling:RequestStateClassification")
-  :has-many `((cycling-request :via ,(s-prefix "cylcing:state")
+  :has-many `((cycling-request :via ,(s-prefix "cycling:state")
                                :inverse t
                                :as "requests"))
   :resource-base (s-url "http://data.lblod.info/id/request-state-classification/")
@@ -108,7 +108,7 @@
               (approval-by-commune :via ,(s-prefix "cycling:goedkeuringVoor")
                            :inverse t
                            :as "approvals"))
-  :resource-base (s-url "http://data.lblod.info/id/cylcing/aanvraag/")
+  :resource-base (s-url "http://data.lblod.info/id/cycling/aanvraag/")
   :features '(include-uri)
   :on-path "cycling-requests"  )
 
@@ -120,7 +120,7 @@
                 (:distance :number ,(s-prefix "cycling:afstand")))
   :has-many `((adres :via ,(s-prefix "cycling:gebruiktWerkingsgebied")
                            :as "areas"))
-  :resource-base (s-url "http://data.lblod.info/id/cylcing/route-sectie/")
+  :resource-base (s-url "http://data.lblod.info/id/cycling/route-sectie/")
   :features '(include-uri)
   :on-path "route-sections"  )
 
