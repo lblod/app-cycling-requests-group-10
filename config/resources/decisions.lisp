@@ -4,6 +4,9 @@
   :properties `((:created :datetime ,(s-prefix "dct:createdAt")))
   :has-one `((bestuurseenheid :via ,(s-prefix "cycling:bevoegdeBestuurseenheid")
                               :as "municipality")
+
+             (cycling-request :via ,(s-prefix "cycling:goedkeuringVoor")
+                         :as "request")
              (agendapunt :via ,(s-prefix "cycling:afweging")
                          :as "consideration")
              (agendapunt :via ,(s-prefix "cycling:innameOpenbaarDomein")

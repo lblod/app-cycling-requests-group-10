@@ -1,9 +1,9 @@
 @prefix cms: <http://mu.semte.ch/vocabulary/cms/>.
 @prefix cycling: <http://mu.semte.ch/vocabularies/ext/cycing/>.
+@prefix sign: <http://mu.semte.ch/vocabularies/ext/signing/>.
 @prefix lmb: <http://lblod.data.gift/vocabularies/lmb/>.
 @prefix nao: <http://www.semanticdesktop.org/ontologies/2007/08/15/nao#>.
 @prefix eli: <http://data.europa.eu/eli/ontology#>.
-@prefix extlmb: <http://mu.semte.ch/vocabularies/ext/lmb/>.
 @prefix mu: <http://mu.semte.ch/vocabularies/core/>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix form: <http://lblod.data.gift/vocabularies/forms/>.
@@ -338,6 +338,11 @@ cycling:bevoegdeBestuurseenheid rdf:type owl:ObjectProperty;
   rdfs:label "municipality";
   rdfs:domain cycling:GoedkeuringDoorGemeente;
   rdfs:range besluit:Bestuurseenheid.
+cycling:goedkeuringVoor rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "request";
+  rdfs:domain cycling:GoedkeuringDoorGemeente;
+  rdfs:range cycling:Aanvraag.
 cycling:afweging rdf:type owl:ObjectProperty;
   rdfs:comment "";
   rdfs:label "consideration";
