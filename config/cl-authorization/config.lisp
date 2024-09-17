@@ -58,7 +58,7 @@
   :schema "http://schema.org/"
   :skos "http://www.w3.org/2004/02/skos/core#"
   :extlmb "http://mu.semte.ch/vocabularies/ext/lmb/"
-  :cycling "http://mu.semte.ch/vocabularies/ext/cycing/"
+  :cycling "http://mu.semte.ch/vocabularies/ext/cycling/"
   :sign "http://mu.semte.ch/vocabularies/ext/signing/"
 )
 

@@ -1,5 +1,5 @@
 @prefix cms: <http://mu.semte.ch/vocabulary/cms/>.
-@prefix cycling: <http://mu.semte.ch/vocabularies/ext/cycing/>.
+@prefix cycling: <http://mu.semte.ch/vocabularies/ext/cycling/>.
 @prefix sign: <http://mu.semte.ch/vocabularies/ext/signing/>.
 @prefix lmb: <http://lblod.data.gift/vocabularies/lmb/>.
 @prefix nao: <http://www.semanticdesktop.org/ontologies/2007/08/15/nao#>.
@@ -383,7 +383,7 @@ besluit:gebeurtNa rdf:type owl:ObjectProperty;
   rdfs:label "vorige-behandeling-van-agendapunt";
   rdfs:domain besluit:BehandelingVanAgendapunt;
   rdfs:range besluit:BehandelingVanAgendapunt.
-cylcing:state rdf:type owl:ObjectProperty;
+cycling:state rdf:type owl:ObjectProperty;
   rdfs:comment "";
   rdfs:label "requests";
   rdfs:domain cycling:Aanvraag;

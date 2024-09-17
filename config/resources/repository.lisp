@@ -65,4 +65,4 @@
 (add-prefix "sign" "http://mu.semte.ch/vocabularies/ext/signing/")
 
 ;; so we can 'easily' change this prefix later to something else
-(add-prefix "cycling" "http://mu.semte.ch/vocabularies/ext/cycing/")
+(add-prefix "cycling" "http://mu.semte.ch/vocabularies/ext/cycling/")
