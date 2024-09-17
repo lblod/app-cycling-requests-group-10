@@ -1,24 +1,24 @@
 ;; match to werkingsgebied based on adres with same gemeentenaam label,
 ;; only gemeentenaam is used in this hackathon but this should be stronger
 ;; probably by lookups in the CRAB database
-(define-resource adres ()
+(define-resource address ()
   :class (s-prefix "locn:Address")
   :properties `((:box-number :string ,(s-prefix "adres:Adresvoorstelling.busnummer"))
                 (:number :string ,(s-prefix "adres:AdresVoorstelling.huisnummer"))
                 (:street :string ,(s-prefix "locn:thoroughfare"))
                 (:postcode :string ,(s-prefix "locn:postCode"))
                 (:municipality :string ,(s-prefix "adres:gemeentenaam"))
-                (:land :language-string-set ,(s-prefix "adres:land"))
+                (:country :string ,(s-prefix "adres:land"))
                 (:locator-designator :string ,(s-prefix "locn:locatorDesignator"))
-                (:locator-name :language-string-set ,(s-prefix "locn:locatorName"))
+                (:locator-name :string ,(s-prefix "locn:locatorName"))
                 (:po-box :string ,(s-prefix "locn:poBox"))
                 (:post-name :string ,(s-prefix "locn:postName"))
                 (:full-address :string ,(s-prefix "locn:fullAddress"))
-                (:adres-register-id :number ,(s-prefix "lblodlg:adresRegisterId"))
+                (:address-register-id :number ,(s-prefix "lblodlg:adresRegisterId"))
                 (:address-register-uri :url ,(s-prefix "adres:verwijstNaar")))
   :features '(include-uri)
   :resource-base (s-url "http://data.lblod.info/id/adressen/")
-  :on-path "adressen"
+  :on-path "addresses"
 )
 
 (define-resource concept ()
@@ -56,22 +56,22 @@
   :features '(include-uri)
   :on-path "request-state-classifications")
 
-(define-resource administrative-units ()
+(define-resource administrative-unit ()
   :class (s-prefix "besluit:Bestuurseenheid")
   :properties `((:name :string ,(s-prefix "skos:prefLabel"))
-                (:alternative-name :string-set ,(s-prefix "skos:altLabel"))
+                (:alternative-name :string ,(s-prefix "skos:altLabel"))
                 (:want-mail-received :boolean ,(s-prefix "ext:wilMailOntvangen")) ;;Voorkeur in berichtencentrum
                 (:mail-address-for-notifications :string ,(s-prefix "ext:mailAdresVoorNotificaties")))
-  :has-one `((locations :via ,(s-prefix "besluit:werkingsgebied")
+  :has-one `((location :via ,(s-prefix "besluit:werkingsgebied")
                              :as "location")
-             (administrative-unit-classification-codes :via ,(s-prefix "besluit:classificatie")
+             (administrative-unit-classification-code :via ,(s-prefix "besluit:classificatie")
                                                  :as "classification"))
   :resource-base (s-url "http://data.lblod.info/id/bestuurseenheden/")
   :features '(include-uri)
   :on-path "administrative-units"
 )
 
-(define-resource administrative-unit-classification-codes ()
+(define-resource administrative-unit-classification-code ()
   :class (s-prefix "ext:BestuurseenheidClassificatieCode")
   :properties `((:label :string ,(s-prefix "skos:prefLabel"))
                 (:scope-note :string ,(s-prefix "skos:scopeNote")))
@@ -80,7 +80,7 @@
   :on-path "administrative-unit-classification-codes"
 )
 
-(define-resource locations ()
+(define-resource location ()
   :class (s-prefix "prov:Location")
   :properties `((:label :string ,(s-prefix "rdfs:label"))
                 (:niveau :string, (s-prefix "ext:werkingsgebiedNiveau")))
@@ -111,7 +111,7 @@
                 (:time-of-passing-start :datetime ,(s-prefix "cycling:startPassage"))
                 (:time-of-passing-end :datetime ,(s-prefix "cycling:endPassage"))
                 (:distance :number ,(s-prefix "cycling:afstand")))
-  :has-many `((adres :via ,(s-prefix "cycling:gebruiktWerkingsgebied")
+  :has-many `((address :via ,(s-prefix "cycling:gebruiktWerkingsgebied")
                            :as "areas"))
   :resource-base (s-url "http://data.lblod.info/id/cylcing/route-sectie/")
   :features '(include-uri)
