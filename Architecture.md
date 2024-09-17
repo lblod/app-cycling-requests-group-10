@@ -8,6 +8,16 @@ This file briefly describes the architecture envisaged in this hackathon
 
 This box abstracts away the default components of a semantic.works stack, like the identifier, dispatcher, login, resources, ... components. There is not much special about them
 
+## Form Content Service
+
+This service was developed as part of LMB and is now used to enter the data regarding the Request directly as linked open data in our database through Semantic Forms (included in the frontend).
+
+## Frontend
+
+An ember application. Normally this is not special, but it is mentioned here because it includes the Semantic Forms through the Form builder service so we can easily create our forms in the form builder, giving us easy extensibility while ALSO being correct according to the linked data model.
+
+Only basic information is captured using forms for this hackathon. Route segments are created the 'oldfashioned way' in Ember directly using resources. This is because that model is more complex and because we had to deal with 'has-many' relations, which would needlessly take time during the hackathon. However, in a real application we would advocate also using forms here, simply use a form per route segment.
+
 ## LDES
 
 This feed watches for delta messages published by the SEAS database and publishes Agendapunten that are created so Gelinkt Notuleren (GN) can pick them up. The AgendaPunt instances are created by the Cycling Events service (see later).

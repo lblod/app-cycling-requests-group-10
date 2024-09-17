@@ -23,6 +23,14 @@
         <mxCell id="T4kVI-0_jnIOjGLxuDZw-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="T4kVI-0_jnIOjGLxuDZw-2" target="T4kVI-0_jnIOjGLxuDZw-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="T4kVI-0_jnIOjGLxuDZw-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="T4kVI-0_jnIOjGLxuDZw-2" target="T4kVI-0_jnIOjGLxuDZw-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="480" />
+              <mxPoint x="110" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="T4kVI-0_jnIOjGLxuDZw-2" value="Frontend" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="190" y="410" width="120" height="60" as="geometry" />
         </mxCell>
@@ -66,6 +74,17 @@
         </mxCell>
         <mxCell id="T4kVI-0_jnIOjGLxuDZw-13" value="Besluit Harvesting" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="660" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T4kVI-0_jnIOjGLxuDZw-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="T4kVI-0_jnIOjGLxuDZw-16" target="T4kVI-0_jnIOjGLxuDZw-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="110" y="600" />
+              <mxPoint x="290" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="T4kVI-0_jnIOjGLxuDZw-16" value="Form content service" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="500" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
