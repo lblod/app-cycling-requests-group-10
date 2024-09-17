@@ -2,7 +2,7 @@
 (define-resource approval-by-commune ()
   :class (s-prefix "cycling:GoedkeuringDoorGemeente")
   :properties `((:created :datetime ,(s-prefix "dct:createdAt")))
-  :has-one `((bestuurseenheid :via ,(s-prefix "cycling:bevoegdeBestuurseenheid")
+  :has-one `((administrative-unit :via ,(s-prefix "cycling:bevoegdeBestuurseenheid")
                               :as "municipality")
 
              (cycling-request :via ,(s-prefix "cycling:goedkeuringVoor")
@@ -50,6 +50,20 @@
   :resource-base (s-url "http://data.lblod.info/id/besluiten/")
   :features '(include-uri)
   :on-path "besluiten"
+)
+
+(define-resource refusal (besluit)
+  :class (s-prefix "cycling:Weigering")
+  :resource-base (s-url "http://data.lblod.info/id/weigeringen/")
+  :features '(include-uri)
+  :on-path "refusals"
+)
+
+(define-resource grant (besluit)
+  :class (s-prefix "besluit:Innamevergunning")
+  :resource-base (s-url "http://data.lblod.info/id/vergunning/")
+  :features '(include-uri)
+  :on-path "vergunningen"
 )
 
 ;; very minimal, we only need the link between agendapunt and besluit

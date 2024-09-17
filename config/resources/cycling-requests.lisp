@@ -93,17 +93,26 @@
   :on-path "locations"
 )
 
-(define-resource cycling-request ()
+(define-resource project ()
+  :class (s-prefix "mobi:Project")
+  :resource-base (s-url "http://data.lblod.info/id/projects/")
+  :features '(include-uri)
+  :has-one `((gebruiker :via ,(s-prefix "mobi:beheerder")
+                   :as "responsible"))
+  :on-path "projects" )
+
+(define-resource cycling-request (project)
   :class (s-prefix "cycling:Aanvraag")
   ;; most properties will come from the form (if all goes well)
   :properties `((:created :datetime ,(s-prefix "dct:createdAt"))
                 (:race-name :string ,(s-prefix "dct:title"))
                 (:race-date :string ,(s-prefix "cycling:raceDate"))
                 (:organizer-name :string ,(s-prefix "cycling:organizerName"))
-                (:organizer-address :string ,(s-prefix "cycling:organizerAddress")))
+                (:organizer-address :string ,(s-prefix "cycling:organizerAddress"))
+                (:description :string ,(s-prefix "dct:description")))
   :has-one `((request-state-classification :via ,(s-prefix "cycling:state")
                            :as "state"))
-  :has-many `((route-section :via ,(s-prefix "cycling:routeSectie")
+  :has-many `((route-section :via ,(s-prefix "mobi:Project.omvat")
                            :as "route-sections")
               (approval-by-commune :via ,(s-prefix "cycling:goedkeuringVoor")
                            :inverse t
@@ -113,11 +122,17 @@
   :on-path "cycling-requests"  )
 
 (define-resource route-section ()
-  :class (s-prefix "cycling:RouteSectie")
+  :class (s-prefix "mobi:Inname")
   :properties `((:created :datetime ,(s-prefix "dct:createdAt"))
+                ;; choosing not to create Period + Instants entities for now, this should be improved in the true product
                 (:time-of-passing-start :datetime ,(s-prefix "cycling:startPassage"))
                 (:time-of-passing-end :datetime ,(s-prefix "cycling:endPassage"))
                 (:distance :number ,(s-prefix "cycling:afstand")))
+                ;; warning: this is missing in the applicationprofile, guessing the prefix
+  :has-one `((grant :via ,(s-prefix "mobi:vergunt")
+                           :as "grant")
+            (refusal :via ,(s-prefix "cycling:weigering")
+                           :as "refusals"))
   :has-many `((address :via ,(s-prefix "cycling:gebruiktWerkingsgebied")
                            :as "areas"))
   :resource-base (s-url "http://data.lblod.info/id/cycling/route-sectie/")

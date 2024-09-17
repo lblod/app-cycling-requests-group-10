@@ -5,11 +5,20 @@ class "route-sections"
 "route-sections" : time-of-passing-start
 "route-sections" : time-of-passing-end
 "route-sections" : distance
-"route-sections" --> "*" "adressen" : areas > 
-class "werkingsgebieden"
-"werkingsgebieden" : naam
-"werkingsgebieden" : niveau
-"werkingsgebieden" --> "*" "bestuurseenheden" : bestuurseenheid > 
+"route-sections" --> "1" "vergunningen" : grant > 
+"route-sections" --> "1" "refusals" : refusals > 
+"route-sections" --> "*" "addresses" : areas > 
+class "administrative-units"
+"administrative-units" : name
+"administrative-units" : alternative-name
+"administrative-units" : want-mail-received
+"administrative-units" : mail-address-for-notifications
+"administrative-units" --> "1" "locations" : location > 
+"administrative-units" --> "1" "administrative-unit-classification-codes" : classification > 
+class "projects"
+"projects" --> "1" "gebruikers" : responsible > 
+class "vergunningen"
+"besluiten" <|-- "vergunningen"
 class "gebruikers"
 "gebruikers" : voornaam
 "gebruikers" : achternaam
@@ -21,25 +30,13 @@ class "concepts"
 "concepts" --> "*" "concept-schemes" : top-concept-schemes > 
 class "commune-approvals"
 "commune-approvals" : created
-"commune-approvals" --> "1" "bestuurseenheden" : municipality > 
+"commune-approvals" --> "1" "administrative-units" : municipality > 
 "commune-approvals" --> "1" "cycling-requests" : request > 
 "commune-approvals" --> "1" "agendapunten" : consideration > 
 "commune-approvals" --> "1" "agendapunten" : taking-domain > 
 "commune-approvals" --> "1" "agendapunten" : approval-mayor > 
-class "adressen"
-"adressen" : busnummer
-"adressen" : huisnummer
-"adressen" : straatnaam
-"adressen" : postcode
-"adressen" : gemeentenaam
-"adressen" : land
-"adressen" : locatieaanduiding
-"adressen" : locatienaam
-"adressen" : postbus
-"adressen" : postnaam
-"adressen" : volledig-adres
-"adressen" : adres-register-id
-"adressen" : adres-register-uri
+class "refusals"
+"besluiten" <|-- "refusals"
 class "agendapunten"
 "agendapunten" : beschrijving
 "agendapunten" : titel
@@ -72,21 +69,38 @@ class "published-resources"
 "published-resources" : content
 class "cycling-requests"
 "cycling-requests" : created
+"cycling-requests" : race-name
+"cycling-requests" : race-date
+"cycling-requests" : organizer-name
+"cycling-requests" : organizer-address
+"cycling-requests" : description
 "cycling-requests" --> "1" "request-state-classifications" : state > 
 "cycling-requests" --> "*" "route-sections" : route-sections > 
 "cycling-requests" --> "*" "commune-approvals" : approvals > 
-class "bestuurseenheden"
-"bestuurseenheden" : naam
-"bestuurseenheden" : alternatieve-naam
-"bestuurseenheden" : wil-mail-ontvangen
-"bestuurseenheden" : mail-adres
-"bestuurseenheden" --> "1" "werkingsgebieden" : werkingsgebied > 
-"bestuurseenheden" --> "1" "bestuurseenheid-classificatie-codes" : classificatie > 
+"projects" <|-- "cycling-requests"
+class "addresses"
+"addresses" : box-number
+"addresses" : number
+"addresses" : street
+"addresses" : postcode
+"addresses" : municipality
+"addresses" : country
+"addresses" : locator-designator
+"addresses" : locator-name
+"addresses" : po-box
+"addresses" : post-name
+"addresses" : full-address
+"addresses" : address-register-id
+"addresses" : address-register-uri
+class "locations"
+"locations" : label
+"locations" : niveau
+"locations" --> "*" "administrative-units" : administrative-units > 
 class "concept-schemes"
 "concept-schemes" : label
 "concept-schemes" --> "*" "concepts" : concepts > 
 "concept-schemes" --> "*" "concepts" : top-concepts > 
-class "bestuurseenheid-classificatie-codes"
-"bestuurseenheid-classificatie-codes" : label
-"bestuurseenheid-classificatie-codes" : scope-note
+class "administrative-unit-classification-codes"
+"administrative-unit-classification-codes" : label
+"administrative-unit-classification-codes" : scope-note
 @enduml
