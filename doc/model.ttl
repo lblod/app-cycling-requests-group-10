@@ -1,5 +1,7 @@
 @prefix cms: <http://mu.semte.ch/vocabulary/cms/>.
 @prefix cycling: <http://mu.semte.ch/vocabularies/ext/cycling/>.
+@prefix m8g: <http://data.europa.eu/m8g/>.
+@prefix mobi: <https://data.vlaanderen.be/ns/mobiliteit#>.
 @prefix sign: <http://mu.semte.ch/vocabularies/ext/signing/>.
 @prefix lmb: <http://lblod.data.gift/vocabularies/lmb/>.
 @prefix nao: <http://www.semanticdesktop.org/ontologies/2007/08/15/nao#>.
@@ -42,18 +44,24 @@
 <http://mu.semte.ch/ontology> dc:title "Generated resource ontology". 
 <http://mu.semte.ch/ontology> dc:description "Generated resource ontology". 
 
-cycling:RouteSectie rdf:type owl:Class;
+mobi:Inname rdf:type owl:Class;
   rdfs:label "route-section".
-prov:Location rdf:type owl:Class;
-  rdfs:label "werkingsgebied".
+besluit:Bestuurseenheid rdf:type owl:Class;
+  rdfs:label "administrative-unit".
+mobi:Project rdf:type owl:Class;
+  rdfs:label "project".
+besluit:Innamevergunning rdf:type owl:Class;
+   rdfs:subClassOf besluit:Besluit;
+  rdfs:label "grant".
 foaf:Person rdf:type owl:Class;
   rdfs:label "gebruiker".
 skos:Concept rdf:type owl:Class;
   rdfs:label "concept".
 cycling:GoedkeuringDoorGemeente rdf:type owl:Class;
   rdfs:label "approval-by-commune".
-locn:Address rdf:type owl:Class;
-  rdfs:label "adres".
+cycling:Weigering rdf:type owl:Class;
+   rdfs:subClassOf besluit:Besluit;
+  rdfs:label "refusal".
 besluit:Agendapunt rdf:type owl:Class;
   rdfs:label "agendapunt".
 besluit:Besluit rdf:type owl:Class;
@@ -68,13 +76,16 @@ cycling:RequestStateClassification rdf:type owl:Class;
 sign:PublishedResource rdf:type owl:Class;
   rdfs:label "published-resource".
 cycling:Aanvraag rdf:type owl:Class;
+   rdfs:subClassOf mobi:Project;
   rdfs:label "cycling-request".
-besluit:Bestuurseenheid rdf:type owl:Class;
-  rdfs:label "bestuurseenheid".
+locn:Address rdf:type owl:Class;
+  rdfs:label "address".
+prov:Location rdf:type owl:Class;
+  rdfs:label "location".
 skos:ConceptScheme rdf:type owl:Class;
   rdfs:label "concept-scheme".
 ext:BestuurseenheidClassificatieCode rdf:type owl:Class;
-  rdfs:label "bestuurseenheid-classificatie-code".
+  rdfs:label "administrative-unit-classification-code".
 
 dct:createdAt rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is datetime";
@@ -85,27 +96,37 @@ cycling:startPassage rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is datetime";
   rdfs:label "time-of-passing-start";
   rdfs:range rdfs:Literal;
-  rdfs:domain cycling:RouteSectie.
+  rdfs:domain mobi:Inname.
 cycling:endPassage rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is datetime";
   rdfs:label "time-of-passing-end";
   rdfs:range rdfs:Literal;
-  rdfs:domain cycling:RouteSectie.
+  rdfs:domain mobi:Inname.
 cycling:afstand rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is number";
   rdfs:label "distance";
   rdfs:range rdfs:Literal;
-  rdfs:domain cycling:RouteSectie.
-rdfs:label rdf:type owl:DatatypeProperty;
+  rdfs:domain mobi:Inname.
+skos:prefLabel rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
-  rdfs:label "naam";
+  rdfs:label "label";
   rdfs:range rdfs:Literal;
-  rdfs:domain prov:Location.
-ext:werkingsgebiedNiveau rdf:type owl:DatatypeProperty;
+  rdfs:domain _:union1.
+skos:altLabel rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
-  rdfs:label "niveau";
+  rdfs:label "alternative-name";
   rdfs:range rdfs:Literal;
-  rdfs:domain prov:Location.
+  rdfs:domain besluit:Bestuurseenheid.
+ext:wilMailOntvangen rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is boolean";
+  rdfs:label "want-mail-received";
+  rdfs:range rdfs:Literal;
+  rdfs:domain besluit:Bestuurseenheid.
+ext:mailAdresVoorNotificaties rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "mail-address-for-notifications";
+  rdfs:range rdfs:Literal;
+  rdfs:domain besluit:Bestuurseenheid.
 foaf:firstName rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
   rdfs:label "voornaam";
@@ -120,87 +141,17 @@ dct:identifier rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is via";
   rdfs:label "vo-id";
   rdfs:range rdfs:Literal;
-  rdfs:domain _:union1.
-skos:prefLabel rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "label";
-  rdfs:range rdfs:Literal;
   rdfs:domain _:union2.
-adres:Adresvoorstelling.busnummer rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "busnummer";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-adres:AdresVoorstelling.huisnummer rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "huisnummer";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:thoroughfare rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "straatnaam";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:postCode rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "postcode";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-adres:gemeentenaam rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "gemeentenaam";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-adres:land rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is language-string-set";
-  rdfs:label "land";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:locatorDesignator rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "locatieaanduiding";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:locatorName rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is language-string-set";
-  rdfs:label "locatienaam";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:poBox rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "postbus";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:postName rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "postnaam";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-locn:fullAddress rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string";
-  rdfs:label "volledig-adres";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-lblodlg:adresRegisterId rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is number";
-  rdfs:label "adres-register-id";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
-adres:verwijstNaar rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is url";
-  rdfs:label "adres-register-uri";
-  rdfs:range rdfs:Literal;
-  rdfs:domain locn:Address.
 dct:description rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
-  rdfs:label "beschrijving";
+  rdfs:label "description";
   rdfs:range rdfs:Literal;
-  rdfs:domain besluit:Agendapunt.
+  rdfs:domain _:union3.
 dct:title rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
-  rdfs:label "titel";
+  rdfs:label "race-name";
   rdfs:range rdfs:Literal;
-  rdfs:domain besluit:Agendapunt.
+  rdfs:domain _:union3.
 besluit:Agendapunt.type rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is uri-set";
   rdfs:label "type";
@@ -256,21 +207,96 @@ sign:text rdf:type owl:DatatypeProperty;
   rdfs:label "content";
   rdfs:range rdfs:Literal;
   rdfs:domain sign:PublishedResource.
-skos:altLabel rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is string-set";
-  rdfs:label "alternatieve-naam";
-  rdfs:range rdfs:Literal;
-  rdfs:domain besluit:Bestuurseenheid.
-ext:wilMailOntvangen rdf:type owl:DatatypeProperty;
-  rdfs:comment "Resources type is boolean";
-  rdfs:label "wil-mail-ontvangen";
-  rdfs:range rdfs:Literal;
-  rdfs:domain besluit:Bestuurseenheid.
-ext:mailAdresVoorNotificaties rdf:type owl:DatatypeProperty;
+cycling:raceDate rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
-  rdfs:label "mail-adres";
+  rdfs:label "race-date";
   rdfs:range rdfs:Literal;
-  rdfs:domain besluit:Bestuurseenheid.
+  rdfs:domain cycling:Aanvraag.
+cycling:organizerName rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "organizer-name";
+  rdfs:range rdfs:Literal;
+  rdfs:domain cycling:Aanvraag.
+cycling:organizerAddress rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "organizer-address";
+  rdfs:range rdfs:Literal;
+  rdfs:domain cycling:Aanvraag.
+adres:Adresvoorstelling.busnummer rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "box-number";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+adres:AdresVoorstelling.huisnummer rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "number";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:thoroughfare rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "street";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:postCode rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "postcode";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+adres:gemeentenaam rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "municipality";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+adres:land rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "country";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:locatorDesignator rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "locator-designator";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:locatorName rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "locator-name";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:poBox rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "po-box";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:postName rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "post-name";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+locn:fullAddress rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "full-address";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+lblodlg:adresRegisterId rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is number";
+  rdfs:label "address-register-id";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+adres:verwijstNaar rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is url";
+  rdfs:label "address-register-uri";
+  rdfs:range rdfs:Literal;
+  rdfs:domain locn:Address.
+rdfs:label rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "label";
+  rdfs:range rdfs:Literal;
+  rdfs:domain prov:Location.
+ext:werkingsgebiedNiveau rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "niveau";
+  rdfs:range rdfs:Literal;
+  rdfs:domain prov:Location.
 skos:scopeNote rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
   rdfs:label "scope-note";
@@ -281,13 +307,33 @@ skos:scopeNote rdf:type owl:DatatypeProperty;
 cycling:gebruiktWerkingsgebied rdf:type owl:ObjectProperty;
   rdfs:comment "Names are areas.";
   rdfs:label "areas";
-  rdfs:domain cycling:RouteSectie;
+  rdfs:domain mobi:Inname;
   rdfs:range locn:Address.
+mobi:vergunt rdf:type owl:ObjectProperty;
+  rdfs:comment "Names are grant.";
+  rdfs:label "grant";
+  rdfs:domain mobi:Inname;
+  rdfs:range besluit:Innamevergunning.
+cycling:weigering rdf:type owl:ObjectProperty;
+  rdfs:comment "Names are refusals.";
+  rdfs:label "refusals";
+  rdfs:domain mobi:Inname;
+  rdfs:range cycling:Weigering.
 besluit:werkingsgebied rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
-  rdfs:comment "Names are werkingsgebied, - bestuurseenheid.";
-  rdfs:label "werkingsgebied";
+  rdfs:comment "Names are - administrative-units, location.";
+  rdfs:label "administrative-units";
   rdfs:domain besluit:Bestuurseenheid;
   rdfs:range prov:Location.
+besluit:classificatie rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are classification.";
+  rdfs:label "classification";
+  rdfs:domain besluit:Bestuurseenheid;
+  rdfs:range ext:BestuurseenheidClassificatieCode.
+mobi:beheerder rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are responsible.";
+  rdfs:label "responsible";
+  rdfs:domain mobi:Project;
+  rdfs:range foaf:Person.
 foaf:account rdf:type owl:FunctionalProperty, owl:ObjectProperty;
   rdfs:comment "Names are - gebruiker, account.";
   rdfs:label "gebruiker";
@@ -353,32 +399,24 @@ besluit:gebeurtNa rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
   rdfs:label "vorige-behandeling-van-agendapunt";
   rdfs:domain besluit:BehandelingVanAgendapunt;
   rdfs:range besluit:BehandelingVanAgendapunt.
-cycling:state rdf:type owl:ObjectProperty;
-  rdfs:comment "Names are - requests.";
-  rdfs:label "requests";
-  rdfs:domain cycling:Aanvraag;
-  rdfs:range cycling:RequestStateClassification.
-cycling:routeSectie rdf:type owl:ObjectProperty;
-  rdfs:comment "Names are route-sections.";
-  rdfs:label "route-sections";
-  rdfs:domain cycling:Aanvraag;
-  rdfs:range cycling:RouteSectie.
 cycling:state rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
-  rdfs:comment "Names are state.";
+  rdfs:comment "Names are state, - requests.";
   rdfs:label "state";
   rdfs:domain cycling:Aanvraag;
   rdfs:range cycling:RequestStateClassification.
-besluit:classificatie rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
-  rdfs:comment "Names are classificatie.";
-  rdfs:label "classificatie";
-  rdfs:domain besluit:Bestuurseenheid;
-  rdfs:range ext:BestuurseenheidClassificatieCode.
+mobi:Project.omvat rdf:type owl:ObjectProperty;
+  rdfs:comment "Names are route-sections.";
+  rdfs:label "route-sections";
+  rdfs:domain cycling:Aanvraag;
+  rdfs:range mobi:Inname.
 
 
 _:union0 rdf:type owl:Class;
-  owl:unionOf (cycling:Aanvraag cycling:GoedkeuringDoorGemeente cycling:RouteSectie).
+  owl:unionOf (cycling:Aanvraag cycling:GoedkeuringDoorGemeente mobi:Inname).
 _:union1 rdf:type owl:Class;
-  owl:unionOf (foaf:OnlineAccount foaf:Person).
-_:union2 rdf:type owl:Class;
   owl:unionOf (besluit:Bestuurseenheid ext:BestuurseenheidClassificatieCode skos:Concept skos:ConceptScheme).
+_:union2 rdf:type owl:Class;
+  owl:unionOf (foaf:OnlineAccount foaf:Person).
+_:union3 rdf:type owl:Class;
+  owl:unionOf (besluit:Agendapunt cycling:Aanvraag).
 

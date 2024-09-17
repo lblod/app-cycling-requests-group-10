@@ -60,6 +60,8 @@
   :extlmb "http://mu.semte.ch/vocabularies/ext/lmb/"
   :cycling "http://mu.semte.ch/vocabularies/ext/cycling/"
   :sign "http://mu.semte.ch/vocabularies/ext/signing/"
+  :mobi "https://data.vlaanderen.be/ns/mobiliteit#"
+  :m8g "http://data.europa.eu/m8g/"
 )
 
 (define-graph public ("http://mu.semte.ch/graphs/public")
@@ -78,7 +80,11 @@
   ("besluit:Agendapunt" -> _)
   ("besluit:Besluit" -> _)
   ("besluit:BehandelingVanAgendapunt" -> _)
-  ("sign:PublishedResource" -> _))
+  ("mobi:Project" -> _ )
+  ("mobi:Inname" -> _ )
+  ("cycling:Weigering" -> _ )
+  ("besluit:Innamevergunning" -> _)
+  ("cycling:Aanvraag" -> _))
 
 (define-graph sessions ("http://mu.semte.ch/graphs/sessions")
   ("musession:Session" -> _))
