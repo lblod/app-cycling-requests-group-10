@@ -79,14 +79,13 @@
     a besluit:Bestuurseenheid ;
     mu:uuid "4b8dcf01-b938-4b93-8801-7497a61456d4" ;
     skos:prefLabel "Gent" .
-    
+
 <http://data.lblod.info/id/bestuurseenheden/82320353-c6d3-4df3-a298-bdb9ccb3914b>
     a besluit:Bestuurseenheid ;
     mu:uuid "82320353-c6d3-4df3-a298-bdb9ccb3914b" ;
-    skos:prefLabel "Aalst"
-    
+    skos:prefLabel "Aalst" .
+
 <http://data.lblod.info/id/bestuurseenheden/62f854b4-0ae8-4164-9235-4c87c54ec352>
     a besluit:Bestuurseenheid ;
     mu:uuid "62f854b4-0ae8-4164-9235-4c87c54ec352" ;
-    skos:prefLabel "Merelbeke"
-    
+    skos:prefLabel "Merelbeke" .
