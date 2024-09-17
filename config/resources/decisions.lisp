@@ -13,7 +13,7 @@
                          :as "taking-domain")
              (agendapunt :via ,(s-prefix "cycling:approvalByMayor")
                          :as "approval-mayor"))
-  :resource-base (s-url "http://data.lblod.info/id/cylcing/commune-approval/")
+  :resource-base (s-url "http://data.lblod.info/id/cycling/commune-approval/")
   :features '(include-uri)
   :on-path "commune-approvals"  )
 
