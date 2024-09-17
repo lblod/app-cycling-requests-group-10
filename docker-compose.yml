@@ -159,3 +159,8 @@ services:
       - "logging=true"
     volumes:
       - ./config/form-content:/config
+  cycling-application-request-service:
+    build: ../cycling-application-request-service/Dockerfile
+    image: team10/cycling-application-request-service
+    environment:
+      LOGLEVEL: "info"
