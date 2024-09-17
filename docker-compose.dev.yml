@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.7"
 
 services:
   identifier:
@@ -24,3 +24,8 @@ services:
     restart: "no"
     environment:
       LOG_LEVEL: debug
+  cycling-application-request-service:
+    restart: "no"
+    ports:
+    - "9300:80"
+    - "9229:9229"
