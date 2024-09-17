@@ -47,26 +47,6 @@ services:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
     logging: *default-logging
-  ldes-client-lmb:
-    image: lblod/ldes-client:0.0.3
-    restart: always
-    labels:
-      - "logging=true"
-    environment:
-      LOG_LEVEL: debug
-      TARGET_GRAPH: http://mu.semte.ch/graphs/lmb
-      BATCH_SIZE: 200
-      BYPASS_MU_AUTH: false
-      LDES_BASE: https://dev.mandatenbeheer.lblod.info/streams/ldes/abb/
-      FIRST_PAGE: https://dev.mandatenbeheer.lblod.info/streams/ldes/abb/1
-      BATCH_GRAPH: http://mu.semte.ch/graphs/batch/lmb
-      WORKING_GRAPH: http://mu.semte.ch/graphs/temp/lmb
-      # it seems virtuoso is slower if it needs to reuse graphs it dropped before, so randomize them
-      RANDOMIZE_GRAPHS: true
-      CRON_PATTERN: "* */5 * * * *"
-      EXTRA_HEADERS: '{"Authorization": "Basic aHR0cDovL2RhdGEubGJsb2QuaW5mby92ZW5kb3JzL2M1ZGE3NjZmLWYxYTYtNDI2YS05YTRkLTM2Yjk2YTg1NWUxODpteSBzdXBlciBzZWNyZXQga2V5IHRoYXQgaSBzaG91bGQgcmVwbGFjZQ=="}'
-    volumes:
-      - ../app-lokaal-mandatenbeheer/config/ldes-client:/config
   resource:
     image: semtech/mu-cl-resources:1.23.0
     logging: *default-logging
