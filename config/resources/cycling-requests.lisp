@@ -3,19 +3,19 @@
 ;; probably by lookups in the CRAB database
 (define-resource adres ()
   :class (s-prefix "locn:Address")
-  :properties `((:busnummer :string ,(s-prefix "adres:Adresvoorstelling.busnummer"))
-                (:huisnummer :string ,(s-prefix "adres:AdresVoorstelling.huisnummer"))
-                (:straatnaam :string ,(s-prefix "locn:thoroughfare"))
+  :properties `((:box-number :string ,(s-prefix "adres:Adresvoorstelling.busnummer"))
+                (:number :string ,(s-prefix "adres:AdresVoorstelling.huisnummer"))
+                (:street :string ,(s-prefix "locn:thoroughfare"))
                 (:postcode :string ,(s-prefix "locn:postCode"))
-                (:gemeentenaam :string ,(s-prefix "adres:gemeentenaam"))
+                (:municipality :string ,(s-prefix "adres:gemeentenaam"))
                 (:land :language-string-set ,(s-prefix "adres:land"))
-                (:locatieaanduiding :string ,(s-prefix "locn:locatorDesignator"))
-                (:locatienaam :language-string-set ,(s-prefix "locn:locatorName"))
-                (:postbus :string ,(s-prefix "locn:poBox"))
-                (:postnaam :string ,(s-prefix "locn:postName"))
-                (:volledig-adres :string ,(s-prefix "locn:fullAddress"))
+                (:locator-designator :string ,(s-prefix "locn:locatorDesignator"))
+                (:locator-name :language-string-set ,(s-prefix "locn:locatorName"))
+                (:po-box :string ,(s-prefix "locn:poBox"))
+                (:post-name :string ,(s-prefix "locn:postName"))
+                (:full-address :string ,(s-prefix "locn:fullAddress"))
                 (:adres-register-id :number ,(s-prefix "lblodlg:adresRegisterId"))
-                (:adres-register-uri :url ,(s-prefix "adres:verwijstNaar")))
+                (:address-register-uri :url ,(s-prefix "adres:verwijstNaar")))
   :features '(include-uri)
   :resource-base (s-url "http://data.lblod.info/id/adressen/")
   :on-path "adressen"
@@ -56,41 +56,41 @@
   :features '(include-uri)
   :on-path "request-state-classifications")
 
-(define-resource bestuurseenheid ()
+(define-resource administrative-units ()
   :class (s-prefix "besluit:Bestuurseenheid")
-  :properties `((:naam :string ,(s-prefix "skos:prefLabel"))
-                (:alternatieve-naam :string-set ,(s-prefix "skos:altLabel"))
-                (:wil-mail-ontvangen :boolean ,(s-prefix "ext:wilMailOntvangen")) ;;Voorkeur in berichtencentrum
-                (:mail-adres :string ,(s-prefix "ext:mailAdresVoorNotificaties")))
-  :has-one `((werkingsgebied :via ,(s-prefix "besluit:werkingsgebied")
-                             :as "werkingsgebied")
-             (bestuurseenheid-classificatie-code :via ,(s-prefix "besluit:classificatie")
-                                                 :as "classificatie"))
+  :properties `((:name :string ,(s-prefix "skos:prefLabel"))
+                (:alternative-name :string-set ,(s-prefix "skos:altLabel"))
+                (:want-mail-received :boolean ,(s-prefix "ext:wilMailOntvangen")) ;;Voorkeur in berichtencentrum
+                (:mail-address-for-notifications :string ,(s-prefix "ext:mailAdresVoorNotificaties")))
+  :has-one `((locations :via ,(s-prefix "besluit:werkingsgebied")
+                             :as "location")
+             (administrative-unit-classification-codes :via ,(s-prefix "besluit:classificatie")
+                                                 :as "classification"))
   :resource-base (s-url "http://data.lblod.info/id/bestuurseenheden/")
   :features '(include-uri)
-  :on-path "bestuurseenheden"
+  :on-path "administrative-units"
 )
 
-(define-resource bestuurseenheid-classificatie-code ()
+(define-resource administrative-unit-classification-codes ()
   :class (s-prefix "ext:BestuurseenheidClassificatieCode")
   :properties `((:label :string ,(s-prefix "skos:prefLabel"))
                 (:scope-note :string ,(s-prefix "skos:scopeNote")))
   :resource-base (s-url "http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/")
   :features '(include-uri)
-  :on-path "bestuurseenheid-classificatie-codes"
+  :on-path "administrative-unit-classification-codes"
 )
 
-(define-resource werkingsgebied ()
+(define-resource locations ()
   :class (s-prefix "prov:Location")
-  :properties `((:naam :string ,(s-prefix "rdfs:label"))
+  :properties `((:label :string ,(s-prefix "rdfs:label"))
                 (:niveau :string, (s-prefix "ext:werkingsgebiedNiveau")))
 
-  :has-many `((bestuurseenheid :via ,(s-prefix "besluit:werkingsgebied")
+  :has-many `((administrative-unit :via ,(s-prefix "besluit:werkingsgebied")
                                :inverse t
-                               :as "bestuurseenheid"))
+                               :as "administrative-units"))
   :resource-base (s-url "http://data.lblod.info/id/werkingsgebieden/")
   :features '(include-uri)
-  :on-path "werkingsgebieden"
+  :on-path "locations"
 )
 
 (define-resource cycling-request ()
