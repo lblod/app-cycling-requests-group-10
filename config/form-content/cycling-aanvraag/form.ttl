@@ -1,75 +1,95 @@
+@prefix : <#>.
 @prefix form: <http://lblod.data.gift/vocabularies/forms/>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
-@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
 @prefix displayTypes: <http://lblod.data.gift/display-types/>.
+@prefix nodes: <http://data.lblod.info/form-data/nodes/>.
+@prefix emb: <http://ember-submission-form-fields/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
 @prefix schema: <http://schema.org/>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix ext: <http://mu.semte.ch/vocabularies/ext/>.
-@prefix person: <http://www.w3.org/ns/person#>.
-@prefix persoon: <http://data.vlaanderen.be/ns/persoon#>.
 @prefix adms: <http://www.w3.org/ns/adms#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cycling: <http://mu.semte.ch/vocabularies/ext/cycling/>.
+@prefix mobi: <https://data.vlaanderen.be/ns/mobiliteit#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
-ext:gebruikteVoornaamF
+nodes:24289e48-258f-4919-8c3e-5783a6acb4a4
     a form:Field;
     form:displayType displayTypes:defaultInput;
-    sh:group ext:persoonPG;
-    sh:name "Voornaam";
+    form:partOf nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1;
+    sh:name "Naam Race";
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path dct:title;
+            sh:resultMessage "De naam van het evenement is verplicht."
+    ];
     sh:order 2;
-    sh:path persoon:gebruikteVoornaam;
-    form:validatedBy
-        [
-            a form:RequiredConstraint;
-            form:grouping form:Bag;
-            sh:path persoon:gebruikteVoornaam;
-            sh:resultMessage "Voornaam is verplicht."
-    ].
-ext:achternaamF
+    sh:path dct:title .
+nodes:49e25352-3e52-4237-8137-f66215c1680a
     a form:Field;
-    form:displayType displayTypes:defaultInput;
-    sh:group ext:persoonPG;
-    sh:name "Achternaam";
-    sh:order 3;
-    sh:path foaf:familyName;
-    form:validatedBy
-        [
-            a form:RequiredConstraint;
-            form:grouping form:Bag;
-            sh:path foaf:familyName;
-            sh:resultMessage "Achternaam is verplicht."
-    ].
-ext:alternatieveNaamF
+    form:displayType displayTypes:date;
+    form:partOf nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1;
+    sh:name "Datum Race";
+    sh:order 5;
+    sh:path cycling:raceDate .
+nodes:ba25a166-aa66-428e-86f2-6096d771d632
     a form:Field;
-    form:displayType displayTypes:defaultInput;
-    sh:group ext:persoonPG;
-    sh:name "Roepnaam";
+    form:displayType displayTypes:textArea;
+    form:partOf nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1;
+    sh:name "Beschrijving";
     sh:order 4;
-    sh:path foaf:name.
-ext:persoonPG
-    a form:PropertyGroup; sh:name "Voeg persoon toe"; sh:order 1.
-
-
-<http://data.lblod.info/id/lmb/forms/persoon>
+    sh:path dct:description .
+nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1
+a form:Section; sh:name "Sectie"; sh:order 1 .
+nodes:dc758838-9460-4d9b-b3ae-315dd0dfc2f1
+    a form:Field;
+    form:displayType displayTypes:defaultInput;
+    form:partOf nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1;
+    sh:name "Naam Organisator";
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path cycling:organizerName;
+            sh:resultMessage "De naam van organisator is verplicht."
+    ];
+    sh:order 3;
+    sh:path cycling:organizerName .
+nodes:f9cd125e-8331-40ae-ae8b-f0ac4b454f14
+    a form:Field;
+    form:displayType displayTypes:textArea;
+    form:partOf nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1;
+    sh:name "Adres organisator";
+    sh:order 6;
+    sh:path cycling:organizerAddress .
+emb:source-node
     a form:Form, form:TopLevelForm;
     form:includes
-        ext:gebruikteVoornaamF,
-        ext:achternaamF,
-        ext:alternatieveNaamF;
-    sh:group ext:persoonPG;
-    form:initGenerator ext:personG;
-    form:targetType person:Person;
-    form:targetLabel foaf:familyName;
-    form:targetLabel persoon:gebruikteVoornaam;
-    ext:prefix <http://data.lblod.info/id/personen/>;
-    mu:uuid "4632bf99-2348-4145-9f2b-c1141b0c545d".
+        nodes:24289e48-258f-4919-8c3e-5783a6acb4a4,
+        nodes:49e25352-3e52-4237-8137-f66215c1680a,
+        nodes:ba25a166-aa66-428e-86f2-6096d771d632,
+        nodes:dc758838-9460-4d9b-b3ae-315dd0dfc2f1,
+        nodes:f9cd125e-8331-40ae-ae8b-f0ac4b454f14;
+    form:partOf nodes:d7b33768-3723-4291-a7be-3d8a7d7cdbc1 ;
+    form:initGenerator ext:aanvraagG;
+    form:targetType cycling:Aanvraag;
+    form:targetLabel dct:title;
+    ext:prefix <http://data.lblod.info/id/cycling/aanvraag/>;
+    mu:uuid "e1c891ac-eb22-4c95-b6c3-46be4ce1cd35".
 
-ext:personG a form:Generator;
+ext:aanvraagG a form:Generator;
   form:prototype [
     form:shape [
-      a cycling:Aanvraag
+      a cycling:Aanvraag;
+      a mobi:Project;
+      cycling:state <http://data.lblod.info/id/concept/cycling-request-statuses/aangemaakt>;
     ]
   ];
   form:dataGenerator form:addMuUuid.
