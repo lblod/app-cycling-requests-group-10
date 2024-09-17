@@ -41,8 +41,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/>.
 
 <http://mu.semte.ch/ontology> rdf:type owl:Ontology.
-<http://mu.semte.ch/ontology> dc:title "Generated resource ontology".
-<http://mu.semte.ch/ontology> dc:description "Generated resource ontology".
+<http://mu.semte.ch/ontology> dc:title "Generated resource ontology". 
+<http://mu.semte.ch/ontology> dc:description "Generated resource ontology". 
 
 mobi:Inname rdf:type owl:Class;
   rdfs:label "route-section".
@@ -449,11 +449,6 @@ mobi:Project.omvat rdf:type owl:ObjectProperty;
   rdfs:label "route-sections";
   rdfs:domain cycling:Aanvraag;
   rdfs:range mobi:Inname.
-besluit:classificatie rdf:type owl:ObjectProperty;
-  rdfs:comment "";
-  rdfs:label "classificatie";
-  rdfs:domain besluit:Bestuurseenheid;
-  rdfs:range ext:BestuurseenheidClassificatieCode.
 
 
 

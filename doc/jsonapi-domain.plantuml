@@ -5,38 +5,45 @@ class "route-sections"
 "route-sections" : time-of-passing-start
 "route-sections" : time-of-passing-end
 "route-sections" : distance
-"route-sections" --> "*" "adressen" : areas >
-"route-sections" --> "*" "vergunningen" : grant >
-"route-sections" --> "*" "refusals" : refusals >
+"route-sections" --> "*" "addresses" : areas > 
+"route-sections" --> "*" "vergunningen" : grant > 
+"route-sections" --> "*" "refusals" : refusals > 
+class "administrative-units"
+"administrative-units" : name
+"administrative-units" : alternative-name
+"administrative-units" : want-mail-received
+"administrative-units" : mail-address-for-notifications
+"administrative-units" --> "1" "locations" : location > 
+"administrative-units" --> "1" "administrative-unit-classification-codes" : classification > 
 class "projects"
-"projects" --> "1" "gebruikers" : responsible >
+"projects" --> "1" "gebruikers" : responsible > 
 class "vergunningen"
 "besluiten" <|-- "vergunningen"
 class "gebruikers"
 "gebruikers" : voornaam
 "gebruikers" : achternaam
 "gebruikers" : rijksregister-nummer
-"gebruikers" --> "*" "accounts" : account >
+"gebruikers" --> "*" "accounts" : account > 
 class "concepts"
 "concepts" : label
-"concepts" --> "*" "concept-schemes" : concept-schemes >
-"concepts" --> "*" "concept-schemes" : top-concept-schemes >
+"concepts" --> "*" "concept-schemes" : concept-schemes > 
+"concepts" --> "*" "concept-schemes" : top-concept-schemes > 
 class "commune-approvals"
 "commune-approvals" : created
-"commune-approvals" --> "1" "administrative-units" : municipality >
-"commune-approvals" --> "1" "cycling-requests" : request >
-"commune-approvals" --> "1" "agendapunten" : consideration >
-"commune-approvals" --> "1" "agendapunten" : taking-domain >
-"commune-approvals" --> "1" "agendapunten" : approval-mayor >
+"commune-approvals" --> "1" "administrative-units" : municipality > 
+"commune-approvals" --> "1" "cycling-requests" : request > 
+"commune-approvals" --> "1" "agendapunten" : consideration > 
+"commune-approvals" --> "1" "agendapunten" : taking-domain > 
+"commune-approvals" --> "1" "agendapunten" : approval-mayor > 
 class "refusals"
 "besluiten" <|-- "refusals"
 class "agendapunten"
 "agendapunten" : beschrijving
 "agendapunten" : titel
 "agendapunten" : type
-"agendapunten" --> "1" "agendapunten" : vorige-agendapunt >
-"agendapunten" --> "1" "behandelingen-van-agendapunten" : behandeling >
-"agendapunten" --> "*" "published-resources" : publications >
+"agendapunten" --> "1" "agendapunten" : vorige-agendapunt > 
+"agendapunten" --> "1" "behandelingen-van-agendapunten" : behandeling > 
+"agendapunten" --> "*" "published-resources" : publications > 
 class "besluiten"
 "besluiten" : beschrijving
 "besluiten" : citeeropschrift
@@ -46,17 +53,17 @@ class "besluiten"
 "besluiten" : taal
 "besluiten" : titel
 "besluiten" : score
-"besluiten" --> "1" "behandelingen-van-agendapunten" : volgend-uit-behandeling-van-agendapunt >
+"besluiten" --> "1" "behandelingen-van-agendapunten" : volgend-uit-behandeling-van-agendapunt > 
 class "behandelingen-van-agendapunten"
-"behandelingen-van-agendapunten" --> "1" "behandelingen-van-agendapunten" : vorige-behandeling-van-agendapunt >
-"behandelingen-van-agendapunten" --> "1" "agendapunten" : onderwerp >
-"behandelingen-van-agendapunten" --> "*" "besluiten" : besluiten >
+"behandelingen-van-agendapunten" --> "1" "behandelingen-van-agendapunten" : vorige-behandeling-van-agendapunt > 
+"behandelingen-van-agendapunten" --> "1" "agendapunten" : onderwerp > 
+"behandelingen-van-agendapunten" --> "*" "besluiten" : besluiten > 
 class "accounts"
 "accounts" : provider
 "accounts" : vo-id
-"accounts" --> "1" "gebruikers" : gebruiker >
+"accounts" --> "1" "gebruikers" : gebruiker > 
 class "request-state-classifications"
-"request-state-classifications" --> "*" "cycling-requests" : requests >
+"request-state-classifications" --> "*" "cycling-requests" : requests > 
 "concepts" <|-- "request-state-classifications"
 class "published-resources"
 "published-resources" : content
@@ -67,9 +74,9 @@ class "cycling-requests"
 "cycling-requests" : organizer-name
 "cycling-requests" : organizer-address
 "cycling-requests" : description
-"cycling-requests" --> "1" "request-state-classifications" : state >
-"cycling-requests" --> "*" "route-sections" : route-sections >
-"cycling-requests" --> "*" "commune-approvals" : approvals >
+"cycling-requests" --> "1" "request-state-classifications" : state > 
+"cycling-requests" --> "*" "route-sections" : route-sections > 
+"cycling-requests" --> "*" "commune-approvals" : approvals > 
 "projects" <|-- "cycling-requests"
 class "addresses"
 "addresses" : box-number
@@ -88,11 +95,11 @@ class "addresses"
 class "locations"
 "locations" : label
 "locations" : niveau
-"locations" --> "*" "administrative-units" : administrative-units >
+"locations" --> "*" "administrative-units" : administrative-units > 
 class "concept-schemes"
 "concept-schemes" : label
-"concept-schemes" --> "*" "concepts" : concepts >
-"concept-schemes" --> "*" "concepts" : top-concepts >
+"concept-schemes" --> "*" "concepts" : concepts > 
+"concept-schemes" --> "*" "concepts" : top-concepts > 
 class "administrative-unit-classification-codes"
 "administrative-unit-classification-codes" : label
 "administrative-unit-classification-codes" : scope-note
