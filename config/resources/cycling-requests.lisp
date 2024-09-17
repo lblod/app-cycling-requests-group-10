@@ -100,7 +100,10 @@
   :has-one `((request-state-classification :via ,(s-prefix "cycling:state")
                            :as "state"))
   :has-many `((route-section :via ,(s-prefix "cycling:routeSectie")
-                           :as "route-sections"))
+                           :as "route-sections")
+              (approval-by-commune :via ,(s-prefix "cycling:goedkeuringVoor")
+                           :inverse t
+                           :as "approvals"))
   :resource-base (s-url "http://data.lblod.info/id/cylcing/aanvraag/")
   :features '(include-uri)
   :on-path "cycling-requests"  )
