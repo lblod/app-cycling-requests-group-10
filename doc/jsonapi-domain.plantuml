@@ -22,6 +22,7 @@ class "concepts"
 class "commune-approvals"
 "commune-approvals" : created
 "commune-approvals" --> "1" "bestuurseenheden" : municipality > 
+"commune-approvals" --> "1" "cycling-requests" : request > 
 "commune-approvals" --> "1" "agendapunten" : consideration > 
 "commune-approvals" --> "1" "agendapunten" : taking-domain > 
 "commune-approvals" --> "1" "agendapunten" : approval-mayor > 
@@ -73,6 +74,7 @@ class "cycling-requests"
 "cycling-requests" : created
 "cycling-requests" --> "1" "request-state-classifications" : state > 
 "cycling-requests" --> "*" "route-sections" : route-sections > 
+"cycling-requests" --> "*" "commune-approvals" : approvals > 
 class "bestuurseenheden"
 "bestuurseenheden" : naam
 "bestuurseenheden" : alternatieve-naam

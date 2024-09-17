@@ -4,13 +4,16 @@
   :properties `((:created :datetime ,(s-prefix "dct:createdAt")))
   :has-one `((bestuurseenheid :via ,(s-prefix "cycling:bevoegdeBestuurseenheid")
                               :as "municipality")
+
+             (cycling-request :via ,(s-prefix "cycling:goedkeuringVoor")
+                         :as "request")
              (agendapunt :via ,(s-prefix "cycling:afweging")
                          :as "consideration")
              (agendapunt :via ,(s-prefix "cycling:innameOpenbaarDomein")
                          :as "taking-domain")
              (agendapunt :via ,(s-prefix "cycling:approvalByMayor")
                          :as "approval-mayor"))
-  :resource-base (s-url "http://data.lblod.info/id/cylcing/commune-approval/")
+  :resource-base (s-url "http://data.lblod.info/id/cycling/commune-approval/")
   :features '(include-uri)
   :on-path "commune-approvals"  )
 
