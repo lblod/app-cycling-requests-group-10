@@ -41,8 +41,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/>.
 
 <http://mu.semte.ch/ontology> rdf:type owl:Ontology.
-<http://mu.semte.ch/ontology> dc:title "Generated resource ontology". 
-<http://mu.semte.ch/ontology> dc:description "Generated resource ontology". 
+<http://mu.semte.ch/ontology> dc:title "Generated resource ontology".
+<http://mu.semte.ch/ontology> dc:description "Generated resource ontology".
 
 mobi:Inname rdf:type owl:Class;
   rdfs:label "route-section".
@@ -309,12 +309,12 @@ cycling:gebruiktWerkingsgebied rdf:type owl:ObjectProperty;
   rdfs:label "areas";
   rdfs:domain mobi:Inname;
   rdfs:range locn:Address.
-mobi:vergunt rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+mobi:vergunt rdf:type owl:ObjectProperty;
   rdfs:comment "Names are grant.";
   rdfs:label "grant";
   rdfs:domain mobi:Inname;
   rdfs:range besluit:Innamevergunning.
-cycling:weigering rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+cycling:weigering rdf:type owl:ObjectProperty;
   rdfs:comment "Names are refusals.";
   rdfs:label "refusals";
   rdfs:domain mobi:Inname;
@@ -409,6 +409,11 @@ mobi:Project.omvat rdf:type owl:ObjectProperty;
   rdfs:label "route-sections";
   rdfs:domain cycling:Aanvraag;
   rdfs:range mobi:Inname.
+besluit:classificatie rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are classificatie.";
+  rdfs:label "classificatie";
+  rdfs:domain besluit:Bestuurseenheid;
+  rdfs:range ext:BestuurseenheidClassificatieCode.
 
 
 _:union0 rdf:type owl:Class;

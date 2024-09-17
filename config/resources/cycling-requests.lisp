@@ -128,14 +128,16 @@
                 (:time-of-passing-start :datetime ,(s-prefix "cycling:startPassage"))
                 (:time-of-passing-end :datetime ,(s-prefix "cycling:endPassage"))
                 (:distance :number ,(s-prefix "cycling:afstand")))
-                ;; warning: this is missing in the applicationprofile, guessing the prefix
-  :has-one `((grant :via ,(s-prefix "mobi:vergunt")
-                           :as "grant")
-            (refusal :via ,(s-prefix "cycling:weigering")
-                           :as "refusals"))
+
   :has-many `((address :via ,(s-prefix "cycling:gebruiktWerkingsgebied")
-                           :as "areas"))
-  :resource-base (s-url "http://data.lblod.info/id/cycling/route-sectie/")
+                           :as "areas")
+              ;; warning: this is missing in the applicationprofile, guessing the prefix
+              (grant :via ,(s-prefix "mobi:vergunt")
+                           :as "grant")
+              ;; warning: need refusal as type of besluit as well to easily find the refusals, creating our own for now, would normally reach out to Yoda
+              (refusal :via ,(s-prefix "cycling:weigering")
+                           :as "refusals"))
+  :resource-base (s-url "http://data.lblod.info/id/cylcing/route-sectie/")
   :features '(include-uri)
   :on-path "route-sections"  )
 
