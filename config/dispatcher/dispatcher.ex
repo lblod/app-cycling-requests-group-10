@@ -124,4 +124,12 @@ defmodule Dispatcher do
   match "/*_", %{ layer: :not_found } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
+
+  #################################################################
+  # LDES
+  #################################################################
+  get "/streams/ldes/*path" do
+    forward(conn, path, "http://ldes-backend/ldes/")
+  end
+
 end
