@@ -7,7 +7,7 @@ export default [
         },
       },
       callback: {
-        url: "http://cycling-application-request-service/delta",
+        url: "http://cycling/delta",
         method: "POST",
       },
       options: {

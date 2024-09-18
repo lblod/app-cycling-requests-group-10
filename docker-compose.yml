@@ -138,10 +138,9 @@ services:
       - "logging=true"
     volumes:
       - ./config/form-content:/config
-  cycling-application-request-service:
+  cycling:
     image: lblod/cycling-request-group-10-service:latest
     restart: always
     logging: *default-logging
     environment:
-      NODE_ENV: "development"
       LOGLEVEL: "info"

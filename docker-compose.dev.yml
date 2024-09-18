@@ -24,8 +24,10 @@ services:
     restart: "no"
     environment:
       LOG_LEVEL: debug
-  cycling-application-request-service:
+  cycling:
     restart: "no"
+    environment:
+      NODE_ENV: "development"
     ports:
     - "9300:80"
     - "9229:9229"
