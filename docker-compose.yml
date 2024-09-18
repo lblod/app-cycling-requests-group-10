@@ -104,7 +104,7 @@ services:
     links:
       - virtuoso:database
   frontend:
-    image: lblod/frontend-cycling-requests-group-10:0.0.0
+    image: lblod/frontend-cycling-requests-group-10:0.0.1
     labels:
       - "logging=true"
     restart: always
@@ -136,7 +136,7 @@ services:
     volumes:
       - ./config/form-content:/config
   cycling:
-    image: lblod/cycling-request-group-10-service:0.0.0
+    image: lblod/cycling-request-group-10-service:0.0.1
     restart: always
     logging: *default-logging
     environment:

@@ -49,6 +49,7 @@
 
 (define-resource request-state-classification (concept)
   :class (s-prefix "cycling:RequestStateClassification")
+  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
   :has-many `((cycling-request :via ,(s-prefix "cycling:state")
                                :inverse t
                                :as "requests"))

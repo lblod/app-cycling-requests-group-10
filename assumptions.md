@@ -20,6 +20,10 @@ We reuse the besluit data model as described [in its application profile](https:
 
 We used as many predicates as possible from this domain, basing ourselves on the example decisions provided in the template, but not all properties may be present. Especially the mayor's approval gave us a hard time and we cut corners there.
 
+### Recognizing rejections
+
+We need some way of recognizing rejections. The model didn't seem to specify any. We added a cycling:Weigering type for now.
+
 ### Besluit harvesting
 
 Normally we would harvest the Besluit instances once the local governments publish them and then add them to our database. Since we don't expect actual Besluit instances to be published during this Hackathon, we added a mock endpoint to simulate this process. The mock endpoint simply adds the Besluit instance to our database as if it was harvested.
