@@ -130,6 +130,7 @@
                 ;; choosing not to create Period + Instants entities for now, this should be improved in the true product
                 (:time-of-passing-start :datetime ,(s-prefix "cycling:startPassage"))
                 (:time-of-passing-end :datetime ,(s-prefix "cycling:endPassage"))
+                (:description :string ,(s-prefix "dct:description"))
                 (:distance :number ,(s-prefix "cycling:afstand")))
 
   :has-many `((address :via ,(s-prefix "cycling:gebruiktWerkingsgebied")
