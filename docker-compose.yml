@@ -67,14 +67,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  # example:
-  #   image: semtech/mu-javascript-template:1.8.0
-  #   logging: *default-logging
-  #   restart: always
-  #   environment:
-  #     NODE_ENV: "development"
-  #   volumes:
-  #     - ./config/example:/app/
   login:
     image: lblod/acmidm-login-service:0.12.0
     environment:
@@ -114,6 +106,14 @@ services:
       - "logging=true"
     links:
       - virtuoso:database
+  frontend:
+    image: lblod/frontend-cycling-requests-group-10:0.0.0
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+    environment:
+      EMBER_AUTHENTICATION_ENABLED: "true"
   ldes-backend:
     image: redpencil/fragmentation-producer:0.4.1
     restart: always
@@ -139,7 +139,7 @@ services:
     volumes:
       - ./config/form-content:/config
   cycling:
-    image: lblod/cycling-request-group-10-service:latest
+    image: lblod/cycling-request-group-10-service:0.0.0
     restart: always
     logging: *default-logging
     environment:
