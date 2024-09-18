@@ -50,21 +50,31 @@ INSERT DATA {
     cycling:state <http://data.lblod.info/id/concept/cycling-request-statuses/aangemaakt> ;
     mobi:Project.omvat <http://data.lblod.info/id/cycling/route-sectie/4e67a86c-64c3-46ec-8366-24e2362e3b59> ;
     mobi:Project.omvat <http://data.lblod.info/id/cycling/route-sectie/e8aa3c5c-6bc5-449c-a821-2ba480289571> ;
+    mobi:Project.omvat <http://data.lblod.info/id/cycling/route-sectie/0f6e780e-59f5-4d5a-b660-363c57540643> ;
     mobi:Project.omvat <http://data.lblod.info/id/cycling/route-sectie/ba5a45ef-f0d3-4183-9482-a8f609874569> .
 
 		<http://data.lblod.info/id/cycling/route-sectie/4e67a86c-64c3-46ec-8366-24e2362e3b59>
     a mobi:Inname ;
     mu:uuid "4e67a86c-64c3-46ec-8366-24e2362e3b59" ;
+    dct:description "Citadelpark en omgeving met parcours in Gent" ;
     cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/358effeb-20b3-4fce-8230-1d085457ab5b> .
 
 		<http://data.lblod.info/id/cycling/route-sectie/e8aa3c5c-6bc5-449c-a821-2ba480289571>
     a mobi:Inname ;
     mu:uuid "e8aa3c5c-6bc5-449c-a821-2ba480289571" ;
+    dct:description "Stadspark en Parklaan" ;
+    cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/80dc5372-56e7-43e3-becd-d8f273c5b455> .
+
+		<http://data.lblod.info/id/cycling/route-sectie/0f6e780e-59f5-4d5a-b660-363c57540643>
+    a mobi:Inname ;
+    mu:uuid "0f6e780e-59f5-4d5a-b660-363c57540643" ;
+    dct:description "Capucienenlaan" ;
     cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/80dc5372-56e7-43e3-becd-d8f273c5b455> .
 
 		<http://data.lblod.info/id/cycling/route-sectie/ba5a45ef-f0d3-4183-9482-a8f609874569>
     a mobi:Inname ;
     mu:uuid "ba5a45ef-f0d3-4183-9482-a8f609874569" ;
+    dct:description "Hundelgemsesteenweg" ;
     cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/eb233a5e-b0ba-419e-bb62-2a9035aea920> .
 
 		<http://data.lblod.info/id/adressen/358effeb-20b3-4fce-8230-1d085457ab5b>
