@@ -9,6 +9,8 @@ const regularTypesToLDESMapping: {
   "http://www.w3.org/ns/locn#Address": true,
   "https://data.vlaanderen.be/ns/mobiliteit#Project": true,
   "https://data.vlaanderen.be/ns/mobiliteit#Inname": true,
+  "http://data.vlaanderen.be/ns/besluit#Agendapunt": true,
+  "http://mu.semte.ch/vocabularies/ext/signing/PublishedResource": true,
 };
 
 export const publishTypeOnLDES = (type: string) => {

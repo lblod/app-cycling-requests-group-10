@@ -137,7 +137,7 @@
                            :as "areas")
               ;; warning: this is missing in the applicationprofile, guessing the prefix
               (grant :via ,(s-prefix "mobi:vergunt")
-                           :as "grant")
+                           :as "grants")
               ;; warning: need refusal as type of besluit as well to easily find the refusals, creating our own for now, would normally reach out to Yoda
               (refusal :via ,(s-prefix "cycling:weigering")
                            :as "refusals"))
