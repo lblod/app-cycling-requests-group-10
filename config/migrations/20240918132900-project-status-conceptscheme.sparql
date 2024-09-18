@@ -40,19 +40,19 @@ INSERT DATA {
   GRAPH <http://mu.semte.ch/graphs/public> {
     <http://lblod.data.gift/concept-schemes/cycling-request-statuses> a skos:ConceptScheme ;
       mu:uuid "e8e801c6-34fa-40ec-85c8-a1f5c1aa0c95" .
-		<http://data.lblod.info/id/concept/cycling-request-statuses/aangemaakt> a skos:Concept ;
+		<http://data.lblod.info/id/concept/cycling-request-statuses/aangemaakt> a skos:Concept, cycling:RequestStateClassification ;
       mu:uuid "fb88f4cc-ba67-43a0-afb1-e76c308366c2" ;
       skos:prefLabel "Aangemaakt" ;
       skos:topConceptOf <http://lblod.data.gift/concept-schemes/cycling-request-statuses> ;
       skos:inScheme <http://lblod.data.gift/concept-schemes/cycling-request-statuses> .
 
-	  <http://data.lblod.info/id/concept/cycling-request-statuses/rejected> a skos:Concept ;
+	  <http://data.lblod.info/id/concept/cycling-request-statuses/rejected> a skos:Concept, cycling:RequestStateClassification ;
       mu:uuid "8f433aae-07e7-4ff0-98ea-e8b28028300b" ;
       skos:prefLabel "Geweigerd" ;
       skos:topConceptOf <http://lblod.data.gift/concept-schemes/cycling-request-statuses> ;
       skos:inScheme <http://lblod.data.gift/concept-schemes/cycling-request-statuses> .
 
-    <http://data.lblod.info/id/concept/cycling-request-statuses/approved> a skos:Concept ;
+    <http://data.lblod.info/id/concept/cycling-request-statuses/approved> a skos:Concept, cycling:RequestStateClassification ;
       mu:uuid "18d22d25-29b3-447a-9fd6-0965633dc9bf" ;
       skos:prefLabel "Goedgekeurd" ;
       skos:topConceptOf <http://lblod.data.gift/concept-schemes/cycling-request-statuses> ;
