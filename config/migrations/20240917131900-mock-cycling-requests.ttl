@@ -78,15 +78,30 @@
 <http://data.lblod.info/id/bestuurseenheden/4b8dcf01-b938-4b93-8801-7497a61456d4>
     a besluit:Bestuurseenheid ;
     mu:uuid "4b8dcf01-b938-4b93-8801-7497a61456d4" ;
-    skos:prefLabel "Gent" .
+    besluit:werkingsgebied <http://data.lblod.info/id/werkingsgebieden/71979ba3-6bed-46ca-a38d-cafc9ec85c38> .
     
 <http://data.lblod.info/id/bestuurseenheden/82320353-c6d3-4df3-a298-bdb9ccb3914b>
     a besluit:Bestuurseenheid ;
     mu:uuid "82320353-c6d3-4df3-a298-bdb9ccb3914b" ;
-    skos:prefLabel "Aalst"
+    besluit:werkingsgebied <http://data.lblod.info/id/werkingsgebieden/54e1a7fa-050a-46af-aed8-af3745b87ef5> .
     
 <http://data.lblod.info/id/bestuurseenheden/62f854b4-0ae8-4164-9235-4c87c54ec352>
     a besluit:Bestuurseenheid ;
     mu:uuid "62f854b4-0ae8-4164-9235-4c87c54ec352" ;
-    skos:prefLabel "Merelbeke"
+    besluit:werkingsgebied <http://data.lblod.info/id/werkingsgebieden/3c82a4fe-b3e8-4f39-b6d0-58e10702dc1d> .
+
+<http://data.lblod.info/id/werkingsgebieden/71979ba3-6bed-46ca-a38d-cafc9ec85c38>
+    a prov:Location ;
+    mu:uuid "71979ba3-6bed-46ca-a38d-cafc9ec85c38" ;
+    rdfs:label "Gent" .
+    
+<http://data.lblod.info/id/werkingsgebieden/54e1a7fa-050a-46af-aed8-af3745b87ef5>
+    a prov:Location ;
+    mu:uuid "54e1a7fa-050a-46af-aed8-af3745b87ef5" ;
+    rdfs:label "Aalst" .
+    
+<http://data.lblod.info/id/werkingsgebieden/3c82a4fe-b3e8-4f39-b6d0-58e10702dc1d>
+    a prov:Location ;
+    mu:uuid "3c82a4fe-b3e8-4f39-b6d0-58e10702dc1d" ;
+    rdfs:label "Merelbeke" .
     
