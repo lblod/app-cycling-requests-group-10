@@ -1,4 +1,5 @@
-import resource from "./resource";
-import ldes from "./ldes";
+import cycling from "./cycling.js";
+import resources from "./resource.js";
+import ldes from "./ldes.js";
 
-export default [...resource, ...ldes];
+export default [...cycling, ...resources, ...ldes];

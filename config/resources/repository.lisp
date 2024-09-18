@@ -63,6 +63,8 @@
 (add-prefix "nao" "http://www.semanticdesktop.org/ontologies/2007/08/15/nao#")
 (add-prefix "lmb" "http://lblod.data.gift/vocabularies/lmb/")
 (add-prefix "sign" "http://mu.semte.ch/vocabularies/ext/signing/")
+(add-prefix "mobi" "https://data.vlaanderen.be/ns/mobiliteit#")
+(add-prefix "m8g" "http://data.europa.eu/m8g/")
 
 ;; so we can 'easily' change this prefix later to something else
 (add-prefix "cycling" "http://mu.semte.ch/vocabularies/ext/cycling/")

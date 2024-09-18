@@ -88,6 +88,18 @@ defmodule Dispatcher do
     forward(conn, path, "http://resource/werkingsgebieden/")
   end
 
+  match "/refusals/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/refusals/")
+  end
+
+  match "/grants/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/grants/")
+  end
+
+  match "/projects/*path", %{layer: :resources, accept: %{any: true}} do
+    forward(conn, path, "http://resource/projects/")
+  end
+
   match "/cycling-requests/*path", %{layer: :resources, accept: %{any: true}} do
     forward(conn, path, "http://resource/cycling-requests/")
   end
@@ -116,4 +128,12 @@ defmodule Dispatcher do
   match "/*_", %{ layer: :not_found } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
+
+  #################################################################
+  # LDES
+  #################################################################
+  get "/streams/ldes/*path" do
+    forward(conn, path, "http://ldes-backend/ldes/")
+  end
+
 end
