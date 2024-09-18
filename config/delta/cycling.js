@@ -3,7 +3,7 @@ export default [
       match: {
         object: {
           type: "uri",
-          value: "http://data.vlaanderen.be/ns/besluit#Besluit",
+          value: "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
         },
       },
       callback: {
