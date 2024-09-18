@@ -7,6 +7,7 @@ const regularTypesToLDESMapping: {
   [key: string]: true;
 } = {
   "http://www.w3.org/ns/locn#Address": true,
+  "http://mu.semte.ch/vocabularies/ext/cycling/GoedkeuringDoorGemeente": true,
   "https://data.vlaanderen.be/ns/mobiliteit#Project": true,
   "https://data.vlaanderen.be/ns/mobiliteit#Inname": true,
   "http://data.vlaanderen.be/ns/besluit#Agendapunt": true,
