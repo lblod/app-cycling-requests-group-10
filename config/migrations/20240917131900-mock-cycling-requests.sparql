@@ -1,0 +1,110 @@
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/> 
+
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#> 
+PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#> 
+PREFIX persoon: <http://data.vlaanderen.be/ns/persoon#> 
+PREFIX generiek: <http://data.vlaanderen.be/ns/generiek#> 
+
+PREFIX adms: <http://www.w3.org/ns/adms#> 
+PREFIX adres: <https://data.vlaanderen.be/ns/adres#> 
+PREFIX ch: <http://data.lblod.info/vocabularies/contacthub/> 
+PREFIX dbpedia: <http://dbpedia.org/ontology/> 
+PREFIX dct: <http://purl.org/dc/terms/> 
+PREFIX eli: <http://data.europa.eu/eli/ontology#> 
+PREFIX euvoc: <http://publications.europa.eu/ontology/euvoc#> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX form: <http://lblod.data.gift/vocabularies/forms/> 
+PREFIX lblodlg: <http://data.lblod.info/vocabularies/leidinggevenden/> 
+PREFIX lmb: <http://lblod.data.gift/vocabularies/lmb/> 
+PREFIX locn: <http://www.w3.org/ns/locn#> 
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/> 
+PREFIX nao: <http://www.semanticdesktop.org/ontologies/2007/08/15/nao#> 
+PREFIX nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> 
+PREFIX nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#> 
+PREFIX org: <http://www.w3.org/ns/org#> 
+PREFIX person: <http://www.w3.org/ns/person#> 
+PREFIX prov: <http://www.w3.org/ns/prov#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX regorg: <https://www.w3.org/ns/regorg#> 
+PREFIX schema: <http://schema.org/> 
+PREFIX sh: <http://www.w3.org/ns/shacl#> 
+PREFIX sign: <http://mu.semte.ch/vocabularies/ext/signing/> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+PREFIX cycling: <http://mu.semte.ch/vocabularies/ext/cycling/> 
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+		<http://data.lblod.info/id/cycling/aanvraag/7f92b75c-361b-42c1-bd35-38ef87405fc2>
+    a cycling:Aanvraag ;
+    mu:uuid "7f92b75c-361b-42c1-bd35-38ef87405fc2" ;
+    dct:title "Omloop Het Nieuwsblad" ;
+    cycling:raceDate "2023-09-17T12:30:00"^^xsd:dateTime ;
+    cycling:organizerAddress "Harensesteenweg 28, 1800 Vilvoorde" ;
+    cycling:organizerName "RIA vzw" ;
+    cycling:routeSectie <http://data.lblod.info/id/cycling/route-sectie/4e67a86c-64c3-46ec-8366-24e2362e3b59> ;
+    cycling:routeSectie <http://data.lblod.info/id/cycling/route-sectie/e8aa3c5c-6bc5-449c-a821-2ba480289571> ;
+    cycling:routeSectie <http://data.lblod.info/id/cycling/route-sectie/ba5a45ef-f0d3-4183-9482-a8f609874569> .
+
+		<http://data.lblod.info/id/cycling/route-sectie/4e67a86c-64c3-46ec-8366-24e2362e3b59>
+    a cycling:RouteSectie ;
+    mu:uuid "4e67a86c-64c3-46ec-8366-24e2362e3b59" ;
+    cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/358effeb-20b3-4fce-8230-1d085457ab5b> .
+
+		<http://data.lblod.info/id/cycling/route-sectie/e8aa3c5c-6bc5-449c-a821-2ba480289571>
+    a cycling:RouteSectie ;
+    mu:uuid "e8aa3c5c-6bc5-449c-a821-2ba480289571" ;
+    cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/80dc5372-56e7-43e3-becd-d8f273c5b455> .
+
+		<http://data.lblod.info/id/cycling/route-sectie/ba5a45ef-f0d3-4183-9482-a8f609874569>
+    a cycling:RouteSectie ;
+    mu:uuid "ba5a45ef-f0d3-4183-9482-a8f609874569" ;
+    cycling:gebruiktWerkingsgebied <http://data.lblod.info/id/adressen/eb233a5e-b0ba-419e-bb62-2a9035aea920> .
+
+		<http://data.lblod.info/id/adressen/358effeb-20b3-4fce-8230-1d085457ab5b>
+    a locn:Address ;
+    mu:uuid "358effeb-20b3-4fce-8230-1d085457ab5b" ;
+    adres:gemeentenaam "Gent" .
+
+		<http://data.lblod.info/id/adressen/80dc5372-56e7-43e3-becd-d8f273c5b455>
+    a locn:Address ;
+    mu:uuid "80dc5372-56e7-43e3-becd-d8f273c5b455" ;
+    adres:gemeentenaam "Aalst" .
+
+		<http://data.lblod.info/id/adressen/eb233a5e-b0ba-419e-bb62-2a9035aea920>
+    a locn:Address ;
+    mu:uuid "eb233a5e-b0ba-419e-bb62-2a9035aea920" ;
+    adres:gemeentenaam "Merelbeke" .
+
+		<http://data.lblod.info/id/bestuurseenheden/4b8dcf01-b938-4b93-8801-7497a61456d4>
+    a besluit:Bestuurseenheid ;
+    mu:uuid "4b8dcf01-b938-4b93-8801-7497a61456d4" ;
+    besluit:werkingsgebied <http://data.lblod.info/id/werkingsgebieden/71979ba3-6bed-46ca-a38d-cafc9ec85c38> .
+    
+		<http://data.lblod.info/id/bestuurseenheden/82320353-c6d3-4df3-a298-bdb9ccb3914b>
+    a besluit:Bestuurseenheid ;
+    mu:uuid "82320353-c6d3-4df3-a298-bdb9ccb3914b" ;
+    besluit:werkingsgebied <http://data.lblod.info/id/werkingsgebieden/54e1a7fa-050a-46af-aed8-af3745b87ef5> .
+    
+		<http://data.lblod.info/id/bestuurseenheden/62f854b4-0ae8-4164-9235-4c87c54ec352>
+    a besluit:Bestuurseenheid ;
+    mu:uuid "62f854b4-0ae8-4164-9235-4c87c54ec352" ;
+    besluit:werkingsgebied <http://data.lblod.info/id/werkingsgebieden/3c82a4fe-b3e8-4f39-b6d0-58e10702dc1d> .
+
+		<http://data.lblod.info/id/werkingsgebieden/71979ba3-6bed-46ca-a38d-cafc9ec85c38>
+    a prov:Location ;
+    mu:uuid "71979ba3-6bed-46ca-a38d-cafc9ec85c38" ;
+    rdfs:label "Gent" .
+    
+		<http://data.lblod.info/id/werkingsgebieden/54e1a7fa-050a-46af-aed8-af3745b87ef5>
+    a prov:Location ;
+    mu:uuid "54e1a7fa-050a-46af-aed8-af3745b87ef5" ;
+    rdfs:label "Aalst" .
+    
+		<http://data.lblod.info/id/werkingsgebieden/3c82a4fe-b3e8-4f39-b6d0-58e10702dc1d>
+    a prov:Location ;
+    mu:uuid "3c82a4fe-b3e8-4f39-b6d0-58e10702dc1d" ;
+    rdfs:label "Merelbeke" .
+	}
+}
