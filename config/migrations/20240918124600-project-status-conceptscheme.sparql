@@ -1,0 +1,62 @@
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+PREFIX persoon: <http://data.vlaanderen.be/ns/persoon#>
+PREFIX generiek: <http://data.vlaanderen.be/ns/generiek#>
+
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX adres: <https://data.vlaanderen.be/ns/adres#>
+PREFIX ch: <http://data.lblod.info/vocabularies/contacthub/>
+PREFIX dbpedia: <http://dbpedia.org/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX eli: <http://data.europa.eu/eli/ontology#>
+PREFIX euvoc: <http://publications.europa.eu/ontology/euvoc#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX form: <http://lblod.data.gift/vocabularies/forms/>
+PREFIX lblodlg: <http://data.lblod.info/vocabularies/leidinggevenden/>
+PREFIX lmb: <http://lblod.data.gift/vocabularies/lmb/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX nao: <http://www.semanticdesktop.org/ontologies/2007/08/15/nao#>
+PREFIX nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>
+PREFIX nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX person: <http://www.w3.org/ns/person#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX regorg: <https://www.w3.org/ns/regorg#>
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX sign: <http://mu.semte.ch/vocabularies/ext/signing/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mobi: <https://data.vlaanderen.be/ns/mobiliteit#>
+PREFIX m8g: <http://data.europa.eu/m8g/>
+
+PREFIX cycling: <http://mu.semte.ch/vocabularies/ext/cycling/>
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    <http://lblod.data.gift/concept-schemes/cycling-request-statuses> a skos:ConceptScheme ;
+      mu:uuid "e8e801c6-34fa-40ec-85c8-a1f5c1aa0c95" .
+		<http://data.lblod.info/id/concept/cycling-request-statuses/aangemaakt> a skos:Concept ;
+      mu:uuid "fb88f4cc-ba67-43a0-afb1-e76c308366c2" ;
+      skos:prefLabel "Aangemaakt" ;
+      skos:topConceptOf <http://lblod.data.gift/concept-schemes/cycling-request-statuses> ;
+      skos:inScheme <http://lblod.data.gift/concept-schemes/cycling-request-statuses> .
+
+	  <http://data.lblod.info/id/concept/cycling-request-statuses/rejected> a skos:Concept ;
+      mu:uuid "8f433aae-07e7-4ff0-98ea-e8b28028300b" ;
+      skos:prefLabel "Geweigerd" ;
+      skos:topConceptOf <http://lblod.data.gift/concept-schemes/cycling-request-statuses> ;
+      skos:inScheme <http://lblod.data.gift/concept-schemes/cycling-request-statuses> .
+
+    <http://data.lblod.info/id/concept/cycling-request-statuses/approved> a skos:Concept ;
+      mu:uuid "18d22d25-29b3-447a-9fd6-0965633dc9bf" ;
+      skos:prefLabel "Goedgekeurd" ;
+      skos:topConceptOf <http://lblod.data.gift/concept-schemes/cycling-request-statuses> ;
+      skos:inScheme <http://lblod.data.gift/concept-schemes/cycling-request-statuses> .
+
+	}
+}
